@@ -1,0 +1,533 @@
+{
+  "items": [
+    {
+      "id": 1, "name": "Frontend Design", "cat": "skills", "sub": "Design", "icon": "🎨",
+      "tags": ["UI", "CSS", "React", "HTML", "Design"],
+      "url": "https://github.com/anthropics/skills/tree/main/frontend-design",
+      "summary": "Erstellt markante, produktionsreife Frontends mit ausgeprägter Ästhetik — kein generisches AI-Slop.",
+      "details": "Der Frontend Design Skill leitet Claude an, visuell auffällige und produktionsreife Benutzeroberflächen zu erstellen. Er setzt auf einen klaren ästhetischen Standpunkt: mutige Typografie, unerwartete Layouts, Farbtiefe und sorgfältige Animationen. Claude wählt für jede Aufgabe eine unverwechselbare Design-Richtung (z.B. Glassmorphism, Brutalism, Retro-Futurism) und setzt diese konsequent um — statt generische Bootstrap-Patterns zu kopieren. Ergebnis: Interfaces, die man sich merkt.",
+      "native": false, "platforms": []
+    },
+    {
+      "id": 2, "name": "PDF Processing", "cat": "skills", "sub": "Dokumente", "icon": "📄",
+      "tags": ["PDF", "Extraktion", "Merge", "Forms"],
+      "url": "https://github.com/anthropics/skills/tree/main/pdf",
+      "summary": "Vollständiges PDF-Management: lesen, zusammenführen, aufteilen, Wasserzeichen, Formulare ausfüllen.",
+      "details": "Mit dem PDF Skill verarbeitet Claude PDFs in alle Richtungen: Text und Tabellen extrahieren, mehrere PDFs zu einem zusammenführen, Dokumente aufteilen, Seiten rotieren, Wasserzeichen hinzufügen, neue PDFs erstellen, Formulare ausfüllen, sowie Dateien verschlüsseln und entschlüsseln. Er nutzt Python-Bibliotheken wie PyMuPDF oder pdfplumber und gibt verarbeitete Dateien direkt aus.",
+      "native": false, "platforms": []
+    },
+    {
+      "id": 3, "name": "XLSX", "cat": "skills", "sub": "Dokumente", "icon": "📊",
+      "tags": ["Excel", "CSV", "Tabellen", "Formeln", "Charts"],
+      "url": "https://github.com/anthropics/skills/tree/main/xlsx",
+      "summary": "Öffnet, liest, bearbeitet und erstellt Excel- und CSV-Dateien — Formeln, Formatierung, Charts.",
+      "details": "Der XLSX Skill ermöglicht Claude die vollständige Arbeit mit Tabellenkalkulationen: .xlsx, .xlsm, .csv und .tsv Dateien öffnen und lesen, Spalten hinzufügen, Formeln berechnen, Daten formatieren, Charts erstellen und unordentliche Daten bereinigen. Er erstellt auch neue Tabellen aus Scratch und kann komplexe Excel-Funktionen, Pivot-Tabellen und bedingte Formatierung anwenden.",
+      "native": false, "platforms": []
+    },
+    {
+      "id": 4, "name": "PPTX", "cat": "skills", "sub": "Dokumente", "icon": "📽️",
+      "tags": ["PowerPoint", "Präsentation", "Slides", "Design"],
+      "url": "https://github.com/anthropics/skills/tree/main/pptx",
+      "summary": "Erstellt, liest und bearbeitet PowerPoint-Präsentationen — Pitch Decks, Slides, Layouts.",
+      "details": "Der PPTX Skill aktiviert Claude immer dann, wenn .pptx-Dateien involviert sind. Er erstellt Slide Decks, Pitch Decks und Präsentationen von Grund auf, liest und extrahiert Text aus bestehenden Dateien, bearbeitet Layouts, fügt Inhalte hinzu oder ändert sie, und kann die enthaltenen Texte für andere Zwecke (z.B. E-Mails, Zusammenfassungen) exportieren.",
+      "native": false, "platforms": []
+    },
+    {
+      "id": 5, "name": "DOCX", "cat": "skills", "sub": "Dokumente", "icon": "📝",
+      "tags": ["Word", "DOCX", "Formatierung", "Inhaltsverzeichnis"],
+      "url": "https://github.com/anthropics/skills/tree/main/docx",
+      "summary": "Erstellt und bearbeitet Word-Dokumente mit professioneller Formatierung — Inhaltsverzeichnis, Kopfzeilen, Seitenzahlen.",
+      "details": "Der DOCX Skill ermöglicht Claude das Erstellen, Lesen und Bearbeiten von Word-Dokumenten (.docx). Er unterstützt professionelle Formatierung wie Inhaltsverzeichnisse, Überschriften-Hierarchien, Seitenzahlen, Kopf- und Fußzeilen, Tabellen, Aufzählungen und Briefköpfe. Ideal für Berichte, Verträge, technische Dokumentation und alle Dokumente mit komplexer Formatierungslogik.",
+      "native": false, "platforms": []
+    },
+    {
+      "id": 6, "name": "Canvas Design", "cat": "skills", "sub": "Design", "icon": "🖌️",
+      "tags": ["Canvas", "Grafik", "Visuals", "Design"],
+      "url": "https://github.com/anthropics/skills/tree/main/canvas-design",
+      "summary": "Visuelles Canvas-Design: erstellt und manipuliert grafische Kompositionen und Design-Assets.",
+      "details": "Der Canvas Design Skill leitet Claude beim Erstellen visueller Designs auf einem digitalen Canvas an. Er eignet sich für grafische Kompositionen, Illustrationen, Infografiken und visuelle Design-Assets. Claude arbeitet direkt im Browser-Canvas-Kontext und kann Formen, Farben, Typografie und Layout präzise arrangieren.",
+      "native": false, "platforms": []
+    },
+    {
+      "id": 7, "name": "Web Artifacts Builder", "cat": "skills", "sub": "Development", "icon": "🧩",
+      "tags": ["Web", "Components", "HTML", "Embeds"],
+      "url": "https://github.com/anthropics/skills/tree/main/web-artifacts-builder",
+      "summary": "Baut eigenständige Web-Artefakte und Komponenten, die als unabhängige Einheiten eingebettet werden können.",
+      "details": "Der Web Artifacts Builder Skill erstellt vollständige, eigenständige Web-Komponenten — von einfachen UI-Elementen bis zu komplexen interaktiven Widgets. Die Ausgabe sind in sich geschlossene HTML/CSS/JS-Blöcke, die direkt eingebettet oder geteilt werden können, ohne externe Abhängigkeiten zu benötigen. Ideal für Demos, Embeds und Prototypen.",
+      "native": false, "platforms": []
+    },
+    {
+      "id": 8, "name": "Brand Guidelines", "cat": "skills", "sub": "Design", "icon": "🏷️",
+      "tags": ["Branding", "Design System", "Identität", "Guidelines"],
+      "url": "https://github.com/anthropics/skills/tree/main/brand-guidelines",
+      "summary": "Setzt Markenrichtlinien durch: Farben, Schriften, Logo-Platzierung und Tone of Voice.",
+      "details": "Der Brand Guidelines Skill stellt sicher, dass alle Outputs konsistent mit einer definierten Markenidentität sind. Er kennt die Farb-Palette, Typografie-Regeln, Logo-Verwendungsrichtlinien und den Kommunikationsstil einer Marke und wendet sie konsequent an — ob in Texten, Designs oder Präsentationen. Besonders nützlich für Unternehmen mit strikten Markenstandards.",
+      "native": false, "platforms": []
+    },
+    {
+      "id": 9, "name": "Skill Creator", "cat": "skills", "sub": "Meta", "icon": "⚙️",
+      "tags": ["Meta", "Skills", "Evals", "Optimierung"],
+      "url": "https://github.com/anthropics/skills/tree/main/skill-creator",
+      "summary": "Erstellt und optimiert neue Claude-Skills — inklusive Evals und Performance-Benchmarks.",
+      "details": "Der Skill Creator ist der Meta-Skill für die Skill-Entwicklung. Er hilft beim Erstellen neuer Skills von Grund auf, beim Bearbeiten und Verbessern bestehender Skills, beim Durchführen von Evaluierungen (Evals) zum Testen der Skill-Performance, bei Varianz-Analysen und beim Optimieren der Skill-Beschreibung für besseres Triggering. Der Skill Creator kennt die SKILL.md-Konventionen und Best Practices des Anthropic Skill-Ökosystems.",
+      "native": false, "platforms": []
+    },
+    {
+      "id": 10, "name": "Superpowers", "cat": "community", "sub": "Agents & Dev", "icon": "⚡",
+      "tags": ["Subagents", "TDD", "Code Review", "Debugging", "Skills"],
+      "url": "https://github.com/obra/superpowers",
+      "summary": "Lehrt Claude Subagent-Entwicklung, Code-Review, TDD, Debugging und Skill-Authoring.",
+      "details": "Superpowers ist ein Meta-Skill, der Claude explizit beibringt, wie man Subagenten entwickelt und koordiniert. Es umfasst Code-Review mit systematischer Fehleranalyse, testgetriebene Entwicklung (TDD), strukturiertes Debugging und das Erstellen neuer Skills. Der Skill enthält Referenz-Dokumente mit Plattform-Mappings (Copilot CLI, Codex, Gemini CLI) und einen Entscheidungsbaum für die Skill-Auswahl. Das Grundprinzip: erst den passenden Skill aufrufen, dann erst handeln.",
+      "native": false, "platforms": []
+    },
+    {
+      "id": 11, "name": "autoresearch", "cat": "community", "sub": "Recherche", "icon": "🔬",
+      "tags": ["Research", "Reports", "Quellen", "Automatisierung"],
+      "url": "https://github.com/karpathy/autoresearch",
+      "summary": "Recherchiert automatisch und erstellt strukturierte, zitierreiche Reports — von Andrej Karpathy.",
+      "details": "autoresearch (von Andrej Karpathy) ist ein autonomer Recherche-Agent. Er analysiert eine Forschungsfrage, sucht iterativ nach relevanten Quellen, synthetisiert die Erkenntnisse und erstellt einen strukturierten, gut zitierten Report. Der Ansatz ist dem akademischen Forschungsprozess nachempfunden: Hypothese → Recherche → Synthese → Bericht. Besonders stark bei technischen und wissenschaftlichen Themen.",
+      "native": false, "platforms": []
+    },
+    {
+      "id": 12, "name": "gstack", "cat": "community", "sub": "Development", "icon": "📦",
+      "tags": ["Tech Stack", "Empfehlungen", "Architecture"],
+      "url": "https://github.com/garrytan/gstack",
+      "summary": "Stack-Management und Empfehlungen für Entwickler — von Garry Tan (Y Combinator).",
+      "details": "gstack von Garry Tan ist ein Skill für Tech-Stack-Entscheidungen. Er hilft Entwicklern und Gründern dabei, die richtige Technologie-Kombination für ihr Projekt zu wählen. Claude analysiert die Anforderungen (Team-Größe, Skalierungsziele, Budget, Expertenlevel) und empfiehlt einen passenden Stack mit Begründung der Trade-offs. Besonders wertvoll für Early-Stage-Startups.",
+      "native": false, "platforms": []
+    },
+    {
+      "id": 13, "name": "Task Master AI", "cat": "community", "sub": "Projektmanagement", "icon": "✅",
+      "tags": ["Tasks", "Projektmanagement", "MCP", "PRD"],
+      "url": "https://github.com/eyaltoledano/claude-task-master",
+      "summary": "KI-gestütztes Task-Management: Projekte zerlegen, priorisieren und als MCP direkt in Claude steuern.",
+      "details": "Task Master AI ist ein MCP-Server, der Claude in ein vollständiges Projektmanagement-Werkzeug verwandelt. Aus einem PRD (Product Requirements Document) generiert er automatisch eine strukturierte Task-Liste, zerlegt Aufgaben in Teilschritte, priorisiert sie und trackt den Fortschritt. Die Integration als MCP ermöglicht es, Tasks direkt aus dem Claude-Chat heraus zu erstellen, zu aktualisieren und zu verwalten — ohne externe Tools.",
+      "native": false, "platforms": []
+    },
+    {
+      "id": 14, "name": "Playwright MCP", "cat": "community", "sub": "Testing & Automation", "icon": "🎭",
+      "tags": ["Browser", "Automation", "E2E Tests", "Scraping"],
+      "url": "https://github.com/executeautomation/mcp-playwright",
+      "summary": "Browser-Automatisierung und End-to-End-Tests direkt aus Claude — Formulare ausfüllen, Scraping, Screenshots.",
+      "details": "Der Playwright MCP-Server gibt Claude die Fähigkeit, echte Browser zu steuern. Claude kann Webseiten aufrufen, Formulare ausfüllen, Buttons klicken, Screenshots erstellen, Inhalte scrapen und End-to-End-Tests durchführen — alles ohne den Chat zu verlassen. Ideal für QA-Automatisierung, UI-Tests, Web-Scraping und die Überprüfung von Web-Deployments direkt nach dem Coding.",
+      "native": false, "platforms": []
+    },
+    {
+      "id": 15, "name": "Marketing Skills", "cat": "community", "sub": "Marketing", "icon": "📣",
+      "tags": ["Marketing", "Copywriting", "Kampagnen", "Conversion"],
+      "url": "https://github.com/coreyhaines31/marketing-skills",
+      "summary": "Marketing-Skill-Set von Corey Haines: Copywriting, Kampagnen, Audience-Analyse, Conversion.",
+      "details": "Die Marketing Skills von Corey Haines umfassen ein breites Spektrum an Marketing-Fähigkeiten: überzeugenden Copywriting für Ads und Landing Pages, E-Mail-Kampagnen-Planung, Zielgruppen-Analyse, Conversion-Rate-Optimierung und Content-Strategie. Claude denkt dabei wie ein erfahrener Growth-Marketer — mit Fokus auf messbaren Ergebnissen und psychologischen Überzeugungsprinzipien.",
+      "native": false, "platforms": []
+    },
+    {
+      "id": 16, "name": "Claude SEO", "cat": "community", "sub": "Marketing", "icon": "🔍",
+      "tags": ["SEO", "Keywords", "Content", "Meta Tags"],
+      "url": "https://github.com/AgriciDaniel/claude-seo",
+      "summary": "SEO-Optimierung: Keyword-Recherche, Content-Optimierung und technische SEO-Beratung.",
+      "details": "Claude SEO verwandelt Claude in einen SEO-Spezialisten. Er führt Keyword-Recherchen durch, optimiert bestehende Texte für Suchmaschinen, generiert Meta-Tags und strukturierte Daten, analysiert Konkurrenz-Content und gibt technische SEO-Empfehlungen. Dabei folgt er aktuellen Google-Richtlinien und berücksichtigt sowohl On-Page- als auch Off-Page-Faktoren.",
+      "native": false, "platforms": []
+    },
+    {
+      "id": 17, "name": "Deep Research Skill", "cat": "community", "sub": "Recherche", "icon": "🧬",
+      "tags": ["Research", "Systematisch", "Multi-Step", "Analyse"],
+      "url": "https://github.com/199-biotechnologie/deep-research-skill",
+      "summary": "Systematische, tiefgehende Recherche für komplexe Fragestellungen über mehrere Iterationen.",
+      "details": "Der Deep Research Skill wurde von 199-biotechnologie für wissenschaftlich-systematische Untersuchungen entwickelt. Er zerlegt komplexe Forschungsfragen in Teilprobleme, recherchiert jeden Aspekt separat, synthetisiert die Erkenntnisse und iteriert, bis eine vollständige Antwort vorliegt. Besonders geeignet für Literaturrecherchen, Marktanalysen und technische Tiefenrecherchen.",
+      "native": false, "platforms": []
+    },
+    {
+      "id": 18, "name": "GPT Researcher", "cat": "community", "sub": "Recherche", "icon": "🤖",
+      "tags": ["Research", "Quellen", "Report", "Autonome Suche"],
+      "url": "https://github.com/assafelovic/gpt-researcher",
+      "summary": "Autonomer KI-Recherche-Agent: sammelt, synthetisiert und berichtet aus mehreren Quellen.",
+      "details": "GPT Researcher von Assaf Elovic ist ein autonomer Recherche-Agent, der Informationen aus dem Internet sammelt, filtert und zu einem strukturierten Report zusammenfasst. Er führt parallele Suchanfragen durch, bewertet die Qualität der Quellen, eliminiert Bias durch Perspektivenvielfalt und produziert lange, detaillierte Berichte mit Quellenangaben. Einer der meistgenutzten Open-Source-Research-Agents.",
+      "native": false, "platforms": []
+    },
+    {
+      "id": 19, "name": "Obsidian Skills", "cat": "community", "sub": "Wissensmanagement", "icon": "🗂️",
+      "tags": ["Obsidian", "PKM", "Notes", "Vault", "Markdown"],
+      "url": "https://github.com/kepano/obsidian-skills",
+      "summary": "Integration mit Obsidian: Notizen erstellen, verlinken und den Vault direkt aus Claude verwalten.",
+      "details": "Die Obsidian Skills von Kepano (dem Obsidian-Entwickler) verbinden Claude direkt mit dem persönlichen Obsidian-Vault. Claude kann Notizen erstellen, bestehende Notes lesen und bearbeiten, interne Links setzen, Tags vergeben und den Vault durchsuchen. Ideal für PKM (Personal Knowledge Management), Second Brain-Workflows und die Verbindung von KI-Recherche mit der eigenen Wissensdatenbank.",
+      "native": false, "platforms": []
+    },
+    {
+      "id": 20, "name": "Context Optimization", "cat": "community", "sub": "Performance", "icon": "📐",
+      "tags": ["Context Window", "Token", "Effizienz", "Kosten"],
+      "url": "https://github.com/muratcankoylan/agent-context-optimization",
+      "summary": "Optimiert die Nutzung des Context Windows für bessere LLM-Performance und niedrigere Kosten.",
+      "details": "Der Context Optimization Skill von Muratcan Koylan analysiert und optimiert, wie Informationen im Kontext-Fenster von Claude genutzt werden. Er identifiziert redundante Inhalte, komprimiert wichtige Informationen ohne Informationsverlust, priorisiert relevante Kontextteile und reduziert so den Token-Verbrauch und die Antwortlatenz. Besonders wertvoll für lange Conversations und kostenintensive Workloads.",
+      "native": false, "platforms": []
+    },
+    {
+      "id": 21, "name": "claude-squad", "cat": "community", "sub": "Agents", "icon": "👥",
+      "tags": ["Multi-Agent", "Parallelisierung", "Koordination", "Subagents"],
+      "url": "https://github.com/smtg-ai/claude-squad",
+      "summary": "Koordiniert mehrere Claude-Instanzen für parallele Workstreams — Multi-Agent-Orchestrierung.",
+      "details": "claude-squad ermöglicht das Spawnen, Verwalten und Koordinieren mehrerer Claude-Agenten gleichzeitig. Statt eine komplexe Aufgabe sequenziell zu bearbeiten, können unabhängige Teilaufgaben an separate Agenten delegiert werden, die parallel arbeiten. Die Ergebnisse werden anschließend aggregiert. Ideal für große Codebasen, parallele Recherchen oder die gleichzeitige Bearbeitung mehrerer Tickets.",
+      "native": false, "platforms": []
+    },
+    {
+      "id": 22, "name": "Ghost OS", "cat": "community", "sub": "System", "icon": "👻",
+      "tags": ["OS", "Automation", "Desktop", "System Tasks"],
+      "url": "https://github.com/ghostwright/ghost-os",
+      "summary": "OS-Level-Automatisierung für System-Tasks, Dateiverwaltung und Desktop-Workflows.",
+      "details": "Ghost OS ist ein Skill für Betriebssystem-nahe Automatisierung. Er ermöglicht Claude das Steuern von Desktop-Anwendungen, die Verwaltung von Dateien und Ordnern auf Systemebene sowie die Automatisierung wiederkehrender Desktop-Workflows. Denk daran als Brücke zwischen Claude und dem Betriebssystem — für Aufgaben, die über Code-Generierung hinausgehen.",
+      "native": false, "platforms": []
+    },
+    {
+      "id": 23, "name": "Context7", "cat": "plugins", "sub": "Dokumentation", "icon": "📚",
+      "tags": ["Docs", "Libraries", "APIs", "Up-to-date"],
+      "url": "https://github.com/upstash/context7",
+      "summary": "Lädt aktuelle Library-Dokumentation direkt in den Chat — keine veralteten APIs mehr.",
+      "details": "Context7 von Upstash löst ein fundamentales Problem mit LLMs: veraltetes Wissen über Bibliotheken und APIs. Das Plugin ruft in Echtzeit die aktuelle, versionsrichtige Dokumentation für jede Bibliothek (npm, PyPI, etc.) ab und injiziert sie in den Kontext. Das Ergebnis: Claude generiert Code, der mit der aktuellen API-Version übereinstimmt — keine halluzinierten oder veralteten Methoden mehr.",
+      "native": false, "platforms": []
+    },
+    {
+      "id": 24, "name": "Tavily", "cat": "plugins", "sub": "Suche", "icon": "🌐",
+      "tags": ["Websuche", "Research", "LLM-optimiert", "Echtzeit"],
+      "url": "https://github.com/tavily-ai/tavily-mcp",
+      "summary": "KI-optimierte Web-Suche: liefert qualitativ hochwertige, LLM-freundliche Suchergebnisse in Echtzeit.",
+      "details": "Tavily ist eine Such-API, die speziell für LLMs entwickelt wurde. Im Gegensatz zu Standard-Suchmaschinen liefert Tavily strukturierte, relevante Ergebnisse, die direkt für die KI-Verarbeitung optimiert sind — keine HTML-Müll, keine Werbung, sondern sauberer, informativer Content. Der MCP-Server integriert Tavily nahtlos in Claude für Echtzeit-Recherchen direkt aus dem Chat.",
+      "native": false, "platforms": []
+    },
+    {
+      "id": 25, "name": "Codebase Memory MCP", "cat": "plugins", "sub": "Code", "icon": "🧠",
+      "tags": ["Code Search", "Semantisch", "Repository", "NLP"],
+      "url": "https://github.com/DeusData/codebase-memory-mcp",
+      "summary": "Semantische Code-Suche in Repositories per natürlicher Sprache — findet Funktionen nach ihrer Bedeutung.",
+      "details": "Das Codebase Memory MCP erstellt einen semantischen Index einer Codebasis und ermöglicht die Suche nach Bedeutung statt nach Syntax. Statt 'grep' für exakte Strings nutzt Claude natürliche Sprache: 'Wo wird die User-Authentifizierung gehandhabt?' → direkte Ergebnisse. Es versteht Codeabsicht, Kommentare und Kontext — ideal für das schnelle Einarbeiten in fremde Codebasen.",
+      "native": false, "platforms": []
+    },
+    {
+      "id": 26, "name": "Remotion", "cat": "plugins", "sub": "Video", "icon": "🎬",
+      "tags": ["Video", "React", "Animation", "Programmierung"],
+      "url": "https://github.com/remotion-dev/remotion",
+      "summary": "Erstellt programmatische Videos mit React — Code schreiben, Video als Output erhalten.",
+      "details": "Remotion ist ein Framework für programmatische Video-Erstellung mit React. Claude schreibt React-Komponenten, die Animationen, Texte, Datenvisualisierungen oder Übergänge definieren — Remotion rendert daraus ein echtes Video (MP4, WebM). Ideal für automatisierte Video-Reports, Daten-Visualisierungen als Video, Marketing-Videos aus Templates oder personalisierte Video-Inhalte im großen Maßstab.",
+      "native": false, "platforms": []
+    },
+    {
+      "id": 27, "name": "promptfoo", "cat": "plugins", "sub": "Testing", "icon": "🧪",
+      "tags": ["LLM Testing", "Evals", "Red Teaming", "CI/CD"],
+      "url": "https://github.com/promptfoo/promptfoo",
+      "summary": "LLM-Testing und Evaluierung: Prompts testen, Modelle vergleichen, Regressionen erkennen.",
+      "details": "promptfoo ist ein Open-Source-Framework für systematisches LLM-Testing. Claude kann damit Prompt-Varianten evaluieren, verschiedene Modelle für dieselbe Aufgabe vergleichen, automatisiertes Red-Teaming durchführen und Qualitätsregressionen bei Prompt-Änderungen erkennen. promptfoo lässt sich in CI/CD-Pipelines integrieren — für LLM-Qualitätssicherung wie bei traditionellem Software-Testing.",
+      "native": false, "platforms": []
+    },
+    {
+      "id": 28, "name": "n8n", "cat": "plugins", "sub": "Automatisierung", "icon": "🔄",
+      "tags": ["Workflow", "Automatisierung", "No-Code", "Integration"],
+      "url": "https://github.com/n8n-io/n8n",
+      "summary": "Visueller Workflow-Automatisierer: Claude mit hunderten von Services verbinden und automatisieren.",
+      "details": "n8n ist eine Open-Source-Workflow-Automatisierungsplattform. Als MCP-Integration kann Claude n8n-Workflows erstellen, auslösen und verwalten. n8n verbindet über 400 Services (Gmail, Slack, GitHub, Databases, APIs) und ermöglicht komplexe Multi-Step-Automatisierungen. Claude plant die Logik, n8n führt aus — ein kraftvolles Duo für Prozessautomatisierung ohne Coding-Overhead.",
+      "native": false, "platforms": []
+    },
+    {
+      "id": 29, "name": "Firecrawl", "cat": "plugins", "sub": "Scraping", "icon": "🕸️",
+      "tags": ["Web Crawling", "Scraping", "Markdown", "JS-rendered"],
+      "url": "https://github.com/mendableai/firecrawl",
+      "summary": "Crawlt Webseiten und liefert sauberes Markdown — auch bei JavaScript-gerendertem Content.",
+      "details": "Firecrawl von Mendable löst das JS-Rendering-Problem beim Web-Scraping: Die meisten Seiten laden Inhalte dynamisch per JavaScript — Standard-Scraper sehen nur leeres HTML. Firecrawl rendert Seiten vollständig (inklusive SPAs und dynamischem Content) und liefert den gesamten Text als strukturiertes, sauberes Markdown zurück — optimal für KI-Verarbeitung und Wissensextraktion.",
+      "native": false, "platforms": []
+    },
+    {
+      "id": 30, "name": "Langflow", "cat": "plugins", "sub": "LLM-Workflows", "icon": "🌊",
+      "tags": ["Visual Builder", "LLM", "Chains", "No-Code"],
+      "url": "https://github.com/langflow-ai/langflow",
+      "summary": "Visueller Drag-and-Drop LLM-Workflow-Builder — Modelle, Prompts und Tools ohne Code verketten.",
+      "details": "Langflow ist ein visuelles Interface zum Erstellen von LLM-Anwendungen. Per Drag-and-Drop können Modelle, Prompts, Vector Stores, Tools und APIs zu komplexen KI-Pipelines verkettet werden — ohne eine Zeile Code. Als MCP integriert, kann Claude Langflow-Flows beschreiben, erstellen oder modifizieren. Ideal für Prototyping und für Teams ohne ML-Engineering-Background.",
+      "native": false, "platforms": []
+    },
+    {
+      "id": 31, "name": "container-use", "cat": "plugins", "sub": "Development", "icon": "📦",
+      "tags": ["Container", "Docker", "Isolation", "Dagger"],
+      "url": "https://github.com/dagger/container-use",
+      "summary": "Container-basierte isolierte Entwicklungsumgebungen für sichere und reproduzierbare Claude-Ausführung.",
+      "details": "container-use von Dagger gibt Claude Code die Fähigkeit, in isolierten Container-Umgebungen zu arbeiten. Statt direkt auf dem Host-System zu operieren (mit potenziellen Risiken), erstellt Claude Container für jede Aufgabe — sauber, reproduzierbar und sicher. Builds, Tests und Deployments laufen in kontrollierten Umgebungen, ohne den Host zu beeinflussen. Perfekt für CI-ähnliche Workflows direkt in Claude Code.",
+      "native": false, "platforms": []
+    },
+    {
+      "id": 32, "name": "Anthropic Skills Repo", "cat": "plugins", "sub": "Repository", "icon": "🏛️",
+      "tags": ["Official", "Skills", "Open Source", "Anthropic"],
+      "url": "https://github.com/anthropics/skills",
+      "summary": "Das offizielle GitHub-Repository mit allen von Anthropic gepflegten Skills und Dokumentation.",
+      "details": "Das offizielle Anthropic Skills Repository ist der zentrale Hub für alle offiziell unterstützten Claude Skills. Es enthält SKILL.md-Dateien für PDF, PPTX, DOCX, XLSX, Frontend Design, Brand Guidelines, Skill Creator und weitere. Jeder Skill folgt einem konsistenten Format mit Metadaten, Anwendungsregeln und Beispielen. Das Repository ist Open Source und Ausgangspunkt für die Community-Skill-Entwicklung.",
+      "native": false, "platforms": []
+    },
+    {
+      "id": 33, "name": "SkillsMP", "cat": "platforms", "sub": "Marktplatz", "icon": "🛒",
+      "tags": ["Marktplatz", "Discovery", "Community", "Installation"],
+      "url": "https://skillsmp.com",
+      "summary": "Skills-Marktplatz für das Entdecken, Teilen und Installieren von Community-Claude-Skills.",
+      "details": "SkillsMP (Skills Marketplace) ist eine Plattform, auf der die Claude-Community ihre eigenen Skills veröffentlichen und entdecken kann. Skills werden mit Beschreibungen, Bewertungen und Installationsanleitungen präsentiert. Die Plattform macht es einfach, spezialisierte Claude-Fähigkeiten für spezifische Anwendungsfälle zu finden — von Nischen-Domain-Skills bis zu allgemeinen Produktivitäts-Skills.",
+      "native": false, "platforms": []
+    },
+    {
+      "id": 34, "name": "SkillHub", "cat": "platforms", "sub": "Hub", "icon": "🔆",
+      "tags": ["Hub", "Skills", "Community", "Browser"],
+      "url": "https://skillhub.club",
+      "summary": "Plattform zum Browsen und Installieren von Claude-Skills mit Bewertungen und Dokumentation.",
+      "details": "SkillHub ist eine community-getriebene Plattform für Claude Skills. Nutzer können vorhandene Skills durchsuchen, nach Kategorie oder Anwendungsfall filtern, Bewertungen lesen und Skills direkt installieren. SkillHub fördert die Community-Entwicklung durch einfaches Publishing und Discovery — ähnlich wie npm für Node.js-Pakete, aber für Claude-Skills.",
+      "native": false, "platforms": []
+    },
+    {
+      "id": 35, "name": "MAGI Archive", "cat": "platforms", "sub": "Archiv", "icon": "📡",
+      "tags": ["Archiv", "Discovery", "AI Models", "Repository"],
+      "url": "https://tom-doerr.github.io/repo_posts/",
+      "summary": "Archiv- und Discovery-Plattform für KI-Modell-Capabilities und Community-Beiträge.",
+      "details": "Das MAGI Archive von Tom Doerr ist eine Sammlung und Indexierungsplattform für KI-bezogene Repositories und Community-Beiträge. Es archiviert interessante AI-Experimente, Skill-Implementierungen und Tool-Integrationen mit regelmäßigen Posts über bemerkenswerte Repositories. Eine gute Quelle, um unbekannte aber mächtige Claude-Tools und -Skills zu entdecken.",
+      "native": false, "platforms": []
+    },
+    {
+      "id": 36, "name": "Awesome Claude Skills", "cat": "platforms", "sub": "Kuratiert", "icon": "⭐",
+      "tags": ["Awesome List", "Kuratiert", "Community", "Übersicht"],
+      "url": "https://github.com/travisvn/awesome-claude-skills",
+      "summary": "Kuratierte Liste der besten Community-Claude-Skills — mit Discovery- und Installationsguide.",
+      "details": "Awesome Claude Skills von TravisVN ist eine kuratierte 'Awesome List' im Stil des GitHub Awesome-Projekts — eine handverlesene Sammlung der nützlichsten und hochwertigsten Claude Skills aus der Community. Jeder Eintrag enthält eine kurze Beschreibung, einen GitHub-Link und Installationshinweise. Eine der besten Startpunkte für alle, die ihr Claude-Setup erweitern möchten.",
+      "native": false, "platforms": []
+    },
+    {
+      "id": 37, "name": "/blindspots", "cat": "commands", "sub": "Allgemein", "icon": "🔮",
+      "tags": ["Selbstkritik", "Fehler", "Qualität", "Review"],
+      "url": null,
+      "summary": "Claude analysiert seine eigenen Antworten auf Fehler, blinde Flecken und fehlende Perspektiven.",
+      "details": "Der /blindspots Befehl aktiviert einen kritisch-reflexiven Modus in Claude. Anstatt Antworten zu bestätigen, hinterfragt Claude seine eigenen Aussagen: Welche Annahmen wurden gemacht? Was wurde übersehen? Welche Gegenargumente gibt es? Welche Perspektiven fehlen? Ideal für den Abschluss wichtiger Analysen oder Entscheidungen, um sicherzustellen, dass keine relevanten Aspekte übergangen wurden.",
+      "native": true, "platforms": ["chat","claudecode"]
+    },
+    {
+      "id": 38, "name": "/HARDMODE", "cat": "commands", "sub": "Allgemein", "icon": "🎯",
+      "tags": ["Direkt", "Feedback", "Kein Filter", "Ehrlich"],
+      "url": null,
+      "summary": "Direkter Modus: weniger Bestätigung, mehr ehrliches und kritisches Feedback ohne Weichspüler.",
+      "details": "/HARDMODE schaltet Claudes natürliche Höflichkeits- und Bestätigungs-Tendenz aus. Statt 'Das klingt gut, aber...' kommt direkt das 'Aber...'. Claude gibt ungeschminktes Feedback, kritisiert Schwächen direkt und spart sich einleitende Floskeln. Besonders nützlich bei Code-Reviews, Business-Plänen oder Ideen, bei denen man echte kritische Rückmeldung statt höflicher Validierung braucht.",
+      "native": true, "platforms": ["chat","claudecode"]
+    },
+    {
+      "id": 39, "name": "/skeptic", "cat": "commands", "sub": "Allgemein", "icon": "🤔",
+      "tags": ["Kritisch", "Quellen", "Annahmen", "Red Team"],
+      "url": null,
+      "summary": "Hinterfragt systematisch Aussagen, Quellen und Annahmen — Red-Team-Modus für eigene Ideen.",
+      "details": "/skeptic versetzt Claude in einen systematisch skeptischen Modus. Jede Behauptung wird auf ihre Grundlage hinterfragt: Auf welchen Daten basiert das? Sind die Quellen valide? Welche Annahmen stecken dahinter? Könnte das auch anders interpretiert werden? Ideal für das Red-Teaming eigener Strategien, das Prüfen von Recherche-Ergebnissen und das Aufdecken von Confirmation Bias.",
+      "native": true, "platforms": ["chat","claudecode"]
+    },
+    {
+      "id": 40, "name": "/EL10", "cat": "commands", "sub": "Allgemein", "icon": "👶",
+      "tags": ["Erklärung", "Vereinfachung", "Analogien", "Bildung"],
+      "url": null,
+      "summary": "Erklärt jedes Konzept wie für einen 10-Jährigen — kein Fachjargon, nur klare Analogien.",
+      "details": "Explain Like I'm 10 (/EL10) weist Claude an, komplexe Themen radikal zu vereinfachen. Kein Fachjargon, keine akademische Sprache — stattdessen einfache Worte, anschauliche Analogien und schrittweise Erklärungen, die auch ohne Vorkenntnisse verständlich sind. Besonders hilfreich beim Einarbeiten in fremde Fachgebiete, beim Erklären technischer Konzepte für Nicht-Techniker oder beim Aufbau fundamentaler Verständnisse.",
+      "native": true, "platforms": ["chat","claudecode"]
+    },
+    {
+      "id": 41, "name": "/noyep", "cat": "commands", "sub": "Allgemein", "icon": "⚡",
+      "tags": ["Direkt", "Keine Floskeln", "Effizienz", "Stil"],
+      "url": null,
+      "summary": "Keine Intro-Floskeln: Claude antwortet direkt ohne 'Gerne!', 'Natürlich!' oder ähnliche Füllwörter.",
+      "details": "/noyep eliminiert die für KI-Assistenten typischen Einleitungsphrasen: 'Großartige Frage!', 'Natürlich, ich helfe dir dabei!', 'Sicher!' — all das entfällt. Claude antwortet direkt mit dem relevanten Inhalt. Spart Zeit, erhöht die Informationsdichte und macht Conversations effizienter. Für Nutzer, die professionelle, sachliche Kommunikation bevorzugen.",
+      "native": true, "platforms": ["chat","claudecode"]
+    },
+    {
+      "id": 42, "name": "/compress", "cat": "commands", "sub": "Allgemein", "icon": "📐",
+      "tags": ["Komprimierung", "Dichte", "Präzision", "Zusammenfassung"],
+      "url": null,
+      "summary": "Komprimiert Text auf maximale Informationsdichte — eliminiert Redundanz bei vollem Informationserhalt.",
+      "details": "/compress fordert Claude auf, einen Text oder eine Erklärung auf das absolute Minimum zu reduzieren — ohne Informationsverlust. Jedes Wort muss einen Beitrag leisten. Floskeln, Wiederholungen, erklärende Einschübe für Offensichtliches werden eliminiert. Das Ergebnis ist eine maximal dichte, präzise Version. Ideal für das Verdichten langer Dokumente oder das Formulieren knapper Antworten.",
+      "native": true, "platforms": ["chat","claudecode"]
+    },
+    {
+      "id": 43, "name": "/steelman", "cat": "commands", "sub": "Allgemein", "icon": "🏋️",
+      "tags": ["Argumentation", "Stärkstes Argument", "Perspektiven", "Dialektik"],
+      "url": null,
+      "summary": "Konstruiert das stärkste mögliche Argument für eine Position — auch wenn Claude anderer Meinung ist.",
+      "details": "/steelman ist das Gegenteil von Strohmann. Claude formuliert das bestmögliche, fairste, stärkste Argument für eine vorgegebene Position — unabhängig von Claudes eigener Einschätzung. Das Ziel: verstehen, warum jemand diese Position wirklich überzeugend findet. Für kritisches Denken, Debate-Vorbereitung, Entscheidungsfindung oder das Verstehen gegensätzlicher Weltanschauungen.",
+      "native": true, "platforms": ["chat","claudecode"]
+    },
+    {
+      "id": 44, "name": "/socratic", "cat": "commands", "sub": "Allgemein", "icon": "💭",
+      "tags": ["Lernen", "Fragen", "Selbsterkenntnis", "Pädagogik"],
+      "url": null,
+      "summary": "Führt per gezielten Fragen zur eigenen Erkenntnis statt Antworten direkt zu geben.",
+      "details": "Im /socratic Modus gibt Claude keine direkten Antworten, sondern führt durch sokratische Fragen: 'Was meinst du damit?', 'Wie würdest du das begründen?', 'Was würde dagegen sprechen?' Das fördert tieferes Verständnis und kritisches Denken. Ideal für Lernprozesse, Problemlösung (wenn man wissen möchte wie man es selbst lösen kann) und philosophische Diskussionen.",
+      "native": true, "platforms": ["chat","claudecode"]
+    },
+    {
+      "id": 45, "name": "/ultrareview", "cat": "commands", "sub": "Allgemein", "icon": "🔬",
+      "tags": ["Review", "Tiefenanalyse", "Design", "Fehler"],
+      "url": null,
+      "summary": "Tiefgehende Fehler- und Designanalyse: Logik, Struktur, potenzielle Flaws — kompromisslos.",
+      "details": "/ultrareview aktiviert Claudes gründlichsten Review-Modus. Es analysiert Code, Texte, Pläne oder Designs auf mehreren Ebenen gleichzeitig: Logikfehler und Randfälle, Architektur- und Designentscheidungen, Performance-Implikationen, Sicherheitsrisiken, Wartbarkeit und Verbesserungspotenziale. Die Ausgabe ist strukturiert, detailliert und kompromisslos — kein Problem bleibt unerwähnt.",
+      "native": true, "platforms": ["chat","claudecode"]
+    },
+    {
+      "id": 46, "name": "/schedule", "cat": "commands", "sub": "Allgemein", "icon": "📅",
+      "tags": ["Cowork", "Scheduling", "Recurring", "Automation"],
+      "url": null,
+      "summary": "Plant wiederkehrende Aufgaben automatisch — Cowork-Integration für zeitbasierte Workflows.",
+      "details": "/schedule ist ein Cowork-spezifischer Befehl, der Claude ermöglicht, Aufgaben zeitbasiert zu planen und zu automatisieren. Es erstellt Cron-ähnliche Jobs, die Claude-Tasks zu bestimmten Zeiten oder in Intervallen ausführen — z.B. tägliche Reports, wöchentliche Reviews oder stündliche Monitoring-Checks. Die Integration mit Cowork ermöglicht persistente, autonome Workflows.",
+      "native": false, "platforms": ["cowork"]
+    },
+    {
+      "id": 47, "name": "/rubber", "cat": "commands", "sub": "Coding", "icon": "🦆",
+      "tags": ["Debugging", "Rubber Duck", "Denken", "Selbstlösung"],
+      "url": null,
+      "summary": "Rubber-Duck-Modus: Claude stellt Fragen, damit du den Bug selbst durch Erklären findest.",
+      "details": "/rubber ist die digitale Rubber-Duck-Debugging-Methode. Statt das Problem direkt zu lösen, stellt Claude strategische Fragen: 'Was sollte diese Zeile tun?', 'Was passiert stattdessen?', 'Hast du das schon in einem Debugger geprüft?'. Der Prozess des Erklärens für Claude führt oft dazu, dass man den Fehler selbst entdeckt — ein bewährter Ansatz aus der Software-Engineering-Praxis.",
+      "native": true, "platforms": ["chat","claudecode"]
+    },
+    {
+      "id": 48, "name": "/review", "cat": "commands", "sub": "Coding", "icon": "👁️",
+      "tags": ["Code Review", "Bugs", "Security", "Best Practices"],
+      "url": null,
+      "summary": "Systematischer Code-Review: Bugs, Security-Lücken, Performance und Best Practices.",
+      "details": "/review aktiviert Claudes vollständigen Code-Review-Modus. Jeder eingereichte Code wird auf vier Ebenen analysiert: Funktionsfehler und logische Bugs, Sicherheitslücken (OWASP Top 10, Injection, etc.), Performance-Probleme (Komplexität, unnötige Operationen) und die Einhaltung von Best Practices und Coding Standards. Die Ausgabe ist strukturiert und priorisiert — Critical-First-Approach.",
+      "native": true, "platforms": ["chat","claudecode"]
+    },
+    {
+      "id": 49, "name": "/refactor", "cat": "commands", "sub": "Coding", "icon": "♻️",
+      "tags": ["Refactoring", "Clean Code", "Wartbarkeit", "Struktur"],
+      "url": null,
+      "summary": "Schreibt Code sauberer um, ohne seine Funktion zu verändern — Clean Code Prinzipien.",
+      "details": "/refactor weist Claude an, bestehenden Code strukturell zu verbessern, ohne sein Verhalten zu ändern. Das umfasst: Umbenennung von Variablen und Funktionen für bessere Lesbarkeit, Extraktion von Wiederholungen in Funktionen, Vereinfachung komplexer Bedingungen, Anwendung von Design Patterns und Einhaltung des Single-Responsibility-Prinzips. Das Ergebnis ist funktional identisch, aber besser lesbar und wartbar.",
+      "native": true, "platforms": ["chat","claudecode"]
+    },
+    {
+      "id": 50, "name": "/explain", "cat": "commands", "sub": "Coding", "icon": "💡",
+      "tags": ["Erklärung", "Code", "Verständnis", "Dokumentation"],
+      "url": null,
+      "summary": "Erklärt Code Zeile für Zeile oder als Gesamtübersicht — wählbar nach Detailtiefe.",
+      "details": "/explain gibt Claude die Anweisung, Code zu erklären. Die Erklärungstiefe kann angepasst werden: Zeile-für-Zeile für fremden oder komplexen Code, High-Level-Architektur für Codebase-Überblicke, oder mitteltiefe Erklärungen für spezifische Funktionen. Claude erklärt nicht nur was der Code tut, sondern auch warum — Designentscheidungen, Trade-offs und Zusammenhänge inklusive.",
+      "native": true, "platforms": ["chat","claudecode"]
+    },
+    {
+      "id": 51, "name": "/optimize", "cat": "commands", "sub": "Coding", "icon": "🚀",
+      "tags": ["Performance", "Geschwindigkeit", "Speicher", "Komplexität"],
+      "url": null,
+      "summary": "Performance-Fokus: Geschwindigkeit, Speicher, algorithmische Komplexität reduzieren.",
+      "details": "/optimize richtet Claudes Analyse ausschließlich auf Performance-Verbesserungen aus. Es analysiert algorithmische Komplexität (O-Notation), identifiziert Bottlenecks, schlägt effizientere Datenstrukturen vor, optimiert Datenbankabfragen und reduziert unnötige Berechnungen oder Allokationen. Die Ausgabe enthält sowohl den optimierten Code als auch die Erklärung der erwarteten Performance-Gewinne.",
+      "native": true, "platforms": ["chat","claudecode"]
+    },
+    {
+      "id": 52, "name": "/test", "cat": "commands", "sub": "Coding", "icon": "✅",
+      "tags": ["Unit Tests", "Coverage", "Edge Cases", "TDD"],
+      "url": null,
+      "summary": "Generiert Unit-Tests für bestehenden Code mit Randfällen und hoher Coverage.",
+      "details": "/test lässt Claude umfassende Unit-Tests für gegebenen Code erstellen. Claude analysiert alle Pfade, identifiziert Randfälle (null/undefined, leere Listen, maximale Werte, ungültige Inputs) und generiert Tests für Erfolgs- und Fehlerpfade. Die Tests folgen dem AAA-Pattern (Arrange-Act-Assert) und können in gängigen Test-Frameworks (Jest, pytest, JUnit etc.) ausgeführt werden.",
+      "native": false, "platforms": ["claudecode"]
+    },
+    {
+      "id": 53, "name": "/debug", "cat": "commands", "sub": "Coding", "icon": "🐛",
+      "tags": ["Debugging", "Root Cause", "Diagnose", "Systematisch"],
+      "url": null,
+      "summary": "Systematische Fehlersuche mit Schritt-für-Schritt Root-Cause-Analyse.",
+      "details": "/debug aktiviert Claudes strukturiertesten Debugging-Modus. Claude sammelt zunächst Informationen (Fehlermeldung, Stack Trace, reproduzierbarer Schritt), formuliert Hypothesen über die Ursache, priorisiert diese nach Wahrscheinlichkeit und schlägt systematische Tests vor. Das Ziel ist immer die Root Cause, nicht das Symptom. Claude erklärt auch, warum das Problem aufgetreten ist und wie ähnliche Fehler zukünftig vermieden werden.",
+      "native": true, "platforms": ["chat","claudecode"]
+    },
+    {
+      "id": 54, "name": "/format", "cat": "commands", "sub": "Documents", "icon": "📋",
+      "tags": ["Formatierung", "Schema", "Markdown", "Struktur"],
+      "url": null,
+      "summary": "Formatiert Text nach definiertem Schema — Markdown, JSON, spezifische Dokumentstile.",
+      "details": "/format weist Claude an, Text in eine definierte Struktur zu bringen. Das kann sein: Konvertierung in korrektes Markdown, Formatierung als JSON/YAML/CSV, Anwendung eines spezifischen Dokumentstils (z.B. APA, IEEE, Unternehmensformat), oder strukturiertes Umformatieren für spezifische Ausgabemedien. Claude versteht das Zielformat und passt Inhalte entsprechend an — ohne inhaltliche Änderungen.",
+      "native": true, "platforms": ["chat","claudecode"]
+    },
+    {
+      "id": 55, "name": "/summarize", "cat": "commands", "sub": "Documents", "icon": "📝",
+      "tags": ["Zusammenfassung", "TL;DR", "Komprimierung", "Punkte"],
+      "url": null,
+      "summary": "Fasst lange Dokumente oder Texte in präzise, strukturierte Zusammenfassungen.",
+      "details": "/summarize erstellt aus langen Texten, PDFs, Artikeln oder Dokumenten strukturierte Zusammenfassungen. Die Ausgabe kann angepasst werden: ein einzelner Satz (TL;DR), eine Executive Summary mit Bullet Points, oder eine ausführlichere Zusammenfassung nach Abschnitten. Claude bewahrt die wichtigsten Erkenntnisse, Entscheidungen und Kernaussagen und eliminiert alles Redundante.",
+      "native": true, "platforms": ["chat","claudecode"]
+    },
+    {
+      "id": 56, "name": "/translate", "cat": "commands", "sub": "Documents", "icon": "🌍",
+      "tags": ["Übersetzung", "Stil", "Register", "Localization"],
+      "url": null,
+      "summary": "Übersetzt Texte stilbewusst — erhält Ton, Register und kulturelle Nuancen.",
+      "details": "/translate führt stilbewusste Übersetzungen durch. Im Gegensatz zu maschinellen Übersetzern berücksichtigt Claude den Kontext, den Kommunikationsstil (formell/informell, technisch/kreativ), kulturelle Referenzen und idiomatische Ausdrücke. Die Übersetzung klingt natürlich in der Zielsprache — nicht wie eine direkte Umformung des Originals. Ideal für Marketing-Texte, Dokumentation und offizielle Kommunikation.",
+      "native": true, "platforms": ["chat","claudecode"]
+    },
+    {
+      "id": 57, "name": "/humanize", "cat": "commands", "sub": "Documents", "icon": "🧑",
+      "tags": ["AI-Detection", "Natürlich", "Umschreiben", "Stil"],
+      "url": null,
+      "summary": "Schreibt KI-generierten Text um, damit er natürlicher und menschlicher klingt.",
+      "details": "/humanize transformiert KI-typische Textmuster in natürlichere Sprache. Claude identifiziert typische AI-Signaturen (überformale Strukturen, repetitive Phrasen, fehlende Sprecheridentität, zu perfekte Grammatik) und ersetzt sie durch variiertere, authentischere Formulierungen. Das Ergebnis klingt, als hätte ein Mensch den Text geschrieben — mit echtem Stil, gelegentlichen Variationen und persönlicher Stimme.",
+      "native": false, "platforms": ["chat"]
+    }
+  ],
+  "installSteps": {
+    "auto": [
+      {
+        "id": "auto-1", "step": 1,
+        "title": "Voraussetzung: Claude Code CLI",
+        "desc": "Stelle sicher, dass Claude Code installiert ist und du im Terminal angemeldet bist.",
+        "code": "# Prüfen ob Claude Code installiert ist\nclaude --version",
+        "note": null
+      },
+      {
+        "id": "auto-2", "step": 2,
+        "title": "Skills installieren (SKILL.md basiert)",
+        "desc": "Lade das offizielle Anthropic Skills Repository herunter — alle Skills auf einmal.",
+        "code": "# Alle Anthropic Skills klonen\ngit clone https://github.com/anthropics/skills \\\n  ~/.claude/skills/anthropics\n\n# Einzelnen Skill (Beispiel: PDF)\ngit clone https://github.com/anthropics/skills /tmp/skills\ncp -r /tmp/skills/pdf ~/.claude/skills/pdf",
+        "note": "Windows: Pfad ist %APPDATA%\\Claude\\skills\\ statt ~/.claude/skills/"
+      },
+      {
+        "id": "auto-3", "step": 3,
+        "title": "MCP Plugins via Claude Code CLI",
+        "desc": "MCP Server werden direkt über den claude mcp add Befehl registriert.",
+        "code": "# Context7 — aktuelle Library-Docs\nclaude mcp add context7 npx -y @upstash/context7-mcp@latest\n\n# Playwright — Browser-Automatisierung\nclaude mcp add playwright npx @playwright/mcp@latest\n\n# Tavily — KI-optimierte Websuche\nclaude mcp add tavily npx -y tavily-mcp\n\n# Task Master AI — Projektmanagement\nclaude mcp add taskmaster npx task-master-ai",
+        "note": null
+      },
+      {
+        "id": "auto-4", "step": 4,
+        "title": "Claude Code neu starten",
+        "desc": "Nach der Installation Claude Code neu starten — alle Skills und MCPs sind sofort aktiv. Skills werden automatisch vom Cowork-System erkannt und geladen.",
+        "code": "# MCP-Status prüfen\nclaude mcp list\n\n# Skills-Verzeichnis prüfen\nls ~/.claude/skills/",
+        "note": null
+      }
+    ],
+    "zip": [
+      {
+        "id": "zip-1", "step": 1,
+        "title": "GitHub Repository öffnen",
+        "desc": "Navigiere zum GitHub-Repository des Skills oder Plugins, das du installieren möchtest. Den Link findest du in der Karte unter \"Skills & Plugins\".",
+        "code": null,
+        "note": null
+      },
+      {
+        "id": "zip-2", "step": 2,
+        "title": "ZIP herunterladen",
+        "desc": "Klicke auf den grünen \"Code\" Button → \"Download ZIP\". Alternativ direkt den Skill-Ordner aus dem Anthropic Skills Repo herunterladen.",
+        "code": null,
+        "note": null
+      },
+      {
+        "id": "zip-3", "step": 3,
+        "title": "ZIP entpacken & Ordner kopieren",
+        "desc": "Entpacke das Archiv und kopiere den Skill-Ordner (mit der SKILL.md Datei) in das Claude-Skills-Verzeichnis.",
+        "code": null,
+        "note": "Der Ordner muss eine SKILL.md Datei enthalten, damit Claude ihn als Skill erkennt."
+      },
+      {
+        "id": "zip-4", "step": 4,
+        "title": "MCP Plugins: settings.json bearbeiten",
+        "desc": "Für MCP Server (Plugins) muss der Eintrag manuell in die Claude Code Konfiguration eingetragen werden:",
+        "code": "// ~/.claude/settings.json (Beispiel)\n{\n  \"mcpServers\": {\n    \"context7\": {\n      \"command\": \"npx\",\n      \"args\": [\"-y\", \"@upstash/context7-mcp@latest\"]\n    }\n  }\n}",
+        "note": null
+      },
+      {
+        "id": "zip-5", "step": 5,
+        "title": "Claude Code neu starten",
+        "desc": "Starte Claude Code komplett neu. Skills und MCP-Server werden beim Start automatisch geladen und sind sofort einsatzbereit.",
+        "code": null,
+        "note": null
+      }
+    ]
+  },
+  "meta": {
+    "lastUpdated": "2026-04-23T00:00:00Z",
+    "nextId": 58
+  }
+}

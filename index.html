@@ -1,0 +1,1443 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Claude Skills & Plugins Directory</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=JetBrains+Mono:wght@300;400;500&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #080808;
+    --surface: rgba(255,255,255,0.035);
+    --surface-hover: rgba(255,255,255,0.065);
+    --border: rgba(255,255,255,0.07);
+    --border-hover: rgba(255,255,255,0.18);
+    --text: #e8e6e3;
+    --text-muted: rgba(232,230,227,0.45);
+    --text-dim: rgba(232,230,227,0.25);
+    --purple: #a78bfa;
+    --purple-glow: rgba(167,139,250,0.15);
+    --blue: #60a5fa;
+    --blue-glow: rgba(96,165,250,0.15);
+    --green: #34d399;
+    --green-glow: rgba(52,211,153,0.15);
+    --orange: #fbbf24;
+    --orange-glow: rgba(251,191,36,0.15);
+    --pink: #f472b6;
+    --pink-glow: rgba(244,114,182,0.15);
+    --cyan: #22d3ee;
+    --cyan-glow: rgba(34,211,238,0.15);
+    --red: #f87171;
+    --red-glow: rgba(248,113,113,0.15);
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 300;
+    min-height: 100vh;
+    overflow-x: hidden;
+  }
+
+  .bg-mesh {
+    position: fixed; inset: 0; z-index: 0; pointer-events: none;
+    background:
+      radial-gradient(ellipse 80% 60% at 20% 10%, rgba(167,139,250,0.06) 0%, transparent 60%),
+      radial-gradient(ellipse 60% 50% at 80% 80%, rgba(52,211,153,0.05) 0%, transparent 60%),
+      radial-gradient(ellipse 50% 40% at 60% 30%, rgba(244,114,182,0.04) 0%, transparent 55%);
+  }
+  .bg-grid {
+    position: fixed; inset: 0; z-index: 0; pointer-events: none;
+    background-image:
+      linear-gradient(rgba(255,255,255,0.012) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255,255,255,0.012) 1px, transparent 1px);
+    background-size: 48px 48px;
+  }
+  .bg-noise {
+    position: fixed; inset: 0; z-index: 0; pointer-events: none; opacity: 0.025;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+    background-size: 200px 200px;
+  }
+
+  .wrapper { position: relative; z-index: 1; max-width: 1440px; margin: 0 auto; padding: 0 24px; }
+
+  /* ── Header ── */
+  header { padding: 72px 0 48px; animation: fadeDown 0.7s ease both; }
+  .header-eyebrow {
+    font-family: 'JetBrains Mono', monospace; font-size: 11px; font-weight: 400;
+    letter-spacing: 0.2em; text-transform: uppercase; color: var(--purple);
+    margin-bottom: 16px; display: flex; align-items: center; gap: 8px;
+  }
+  .header-eyebrow::before { content: ''; display: inline-block; width: 20px; height: 1px; background: var(--purple); }
+  h1 {
+    font-family: 'Syne', sans-serif; font-size: clamp(36px, 6vw, 72px); font-weight: 800;
+    line-height: 1.0; letter-spacing: -0.03em; color: var(--text); margin-bottom: 20px;
+  }
+  h1 span {
+    background: linear-gradient(135deg, var(--purple) 0%, var(--pink) 50%, var(--cyan) 100%);
+    -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+  }
+  .header-desc { font-size: 16px; color: var(--text-muted); max-width: 540px; line-height: 1.7; margin-bottom: 36px; }
+  .header-row { display: flex; align-items: flex-start; justify-content: space-between; flex-wrap: wrap; gap: 16px; }
+  .stats { display: flex; gap: 32px; flex-wrap: wrap; }
+  .stat { display: flex; flex-direction: column; gap: 2px; }
+  .stat-num { font-family: 'Syne', sans-serif; font-size: 28px; font-weight: 700; letter-spacing: -0.02em; }
+  .stat-label { font-family: 'JetBrains Mono', monospace; font-size: 10px; letter-spacing: 0.15em; text-transform: uppercase; color: var(--text-muted); }
+
+  /* ── Login Button ── */
+  .login-btn {
+    font-family: 'JetBrains Mono', monospace; font-size: 11px; letter-spacing: 0.08em;
+    padding: 8px 16px; border-radius: 8px; border: 1px solid var(--border);
+    background: var(--surface); color: var(--text-muted); cursor: pointer; transition: all 0.2s;
+    display: flex; align-items: center; gap: 8px; white-space: nowrap;
+  }
+  .login-btn:hover { color: var(--text); border-color: var(--border-hover); background: var(--surface-hover); }
+  .login-btn.logged-in { border-color: rgba(52,211,153,0.3); color: var(--green); }
+  .login-btn .avatar { width: 22px; height: 22px; border-radius: 50%; }
+
+  /* ── Controls ── */
+  .controls {
+    position: sticky; top: 0; z-index: 100;
+    background: rgba(8,8,8,0.85); backdrop-filter: blur(24px); -webkit-backdrop-filter: blur(24px);
+    border-bottom: 1px solid var(--border); padding: 16px 0; margin-bottom: 40px;
+    animation: fadeDown 0.7s 0.1s ease both;
+  }
+  .controls-inner {
+    max-width: 1440px; margin: 0 auto; padding: 0 24px;
+    display: flex; gap: 16px; align-items: center; flex-wrap: wrap;
+  }
+  .search-wrap { position: relative; flex: 1; min-width: 200px; max-width: 360px; }
+  .search-icon { position: absolute; left: 14px; top: 50%; transform: translateY(-50%); color: var(--text-dim); font-size: 14px; pointer-events: none; }
+  #search {
+    width: 100%; background: var(--surface); border: 1px solid var(--border); border-radius: 10px;
+    padding: 10px 14px 10px 38px; color: var(--text); font-family: 'DM Sans', sans-serif;
+    font-size: 14px; font-weight: 300; outline: none; transition: border-color 0.2s, background 0.2s;
+  }
+  #search::placeholder { color: var(--text-dim); }
+  #search:focus { border-color: var(--border-hover); background: var(--surface-hover); }
+  .filters { display: flex; gap: 6px; flex-wrap: wrap; }
+  .filter-btn {
+    font-family: 'JetBrains Mono', monospace; font-size: 10px; font-weight: 400;
+    letter-spacing: 0.1em; text-transform: uppercase; padding: 7px 14px; border-radius: 8px;
+    border: 1px solid var(--border); background: var(--surface); color: var(--text-muted);
+    cursor: pointer; transition: all 0.2s; white-space: nowrap;
+  }
+  .filter-btn:hover { color: var(--text); border-color: var(--border-hover); }
+  .filter-btn.active { color: var(--bg); font-weight: 500; border-color: transparent; }
+  .filter-btn[data-cat="all"].active { background: var(--text); }
+  .filter-btn[data-cat="skills"].active { background: var(--purple); box-shadow: 0 0 16px var(--purple-glow); }
+  .filter-btn[data-cat="community"].active { background: var(--blue); box-shadow: 0 0 16px var(--blue-glow); }
+  .filter-btn[data-cat="plugins"].active { background: var(--green); box-shadow: 0 0 16px var(--green-glow); }
+  .filter-btn[data-cat="commands"].active { background: var(--orange); box-shadow: 0 0 16px var(--orange-glow); }
+  .filter-btn[data-cat="platforms"].active { background: var(--pink); box-shadow: 0 0 16px var(--pink-glow); }
+
+  .result-info {
+    font-family: 'JetBrains Mono', monospace; font-size: 11px; color: var(--text-dim);
+    margin-bottom: 24px; padding: 0 0 0 2px; animation: fadeDown 0.5s ease both;
+  }
+
+  .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 16px; padding-bottom: 80px; }
+
+  /* ── Cards ── */
+  .card {
+    background: var(--surface); border: 1px solid var(--border); border-radius: 16px; padding: 24px;
+    cursor: pointer; transition: transform 0.25s cubic-bezier(0.34,1.56,0.64,1), border-color 0.25s, background 0.25s, box-shadow 0.25s;
+    position: relative; overflow: hidden; animation: cardIn 0.4s ease both;
+  }
+  .card:hover { transform: translateY(-4px) scale(1.01); border-color: var(--border-hover); background: var(--surface-hover); }
+  .card[data-cat="skills"]:hover { box-shadow: 0 8px 32px var(--purple-glow); }
+  .card[data-cat="community"]:hover { box-shadow: 0 8px 32px var(--blue-glow); }
+  .card[data-cat="plugins"]:hover { box-shadow: 0 8px 32px var(--green-glow); }
+  .card[data-cat="commands"]:hover { box-shadow: 0 8px 32px var(--orange-glow); }
+  .card[data-cat="platforms"]:hover { box-shadow: 0 8px 32px var(--pink-glow); }
+  .card::after {
+    content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px;
+    background: linear-gradient(90deg, transparent, transparent); transition: background 0.3s;
+  }
+  .card[data-cat="skills"]::after { background: linear-gradient(90deg, var(--purple), transparent); }
+  .card[data-cat="community"]::after { background: linear-gradient(90deg, var(--blue), transparent); }
+  .card[data-cat="plugins"]::after { background: linear-gradient(90deg, var(--green), transparent); }
+  .card[data-cat="commands"]::after { background: linear-gradient(90deg, var(--orange), transparent); }
+  .card[data-cat="platforms"]::after { background: linear-gradient(90deg, var(--pink), transparent); }
+  .card-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 14px; }
+  .card-icon { font-size: 22px; }
+  .badge {
+    font-family: 'JetBrains Mono', monospace; font-size: 9px; letter-spacing: 0.12em;
+    text-transform: uppercase; padding: 3px 8px; border-radius: 6px;
+  }
+  .card[data-cat="skills"] .badge { background: rgba(167,139,250,0.12); color: var(--purple); border: 1px solid rgba(167,139,250,0.2); }
+  .card[data-cat="community"] .badge { background: rgba(96,165,250,0.12); color: var(--blue); border: 1px solid rgba(96,165,250,0.2); }
+  .card[data-cat="plugins"] .badge { background: rgba(52,211,153,0.12); color: var(--green); border: 1px solid rgba(52,211,153,0.2); }
+  .card[data-cat="commands"] .badge { background: rgba(251,191,36,0.12); color: var(--orange); border: 1px solid rgba(251,191,36,0.2); }
+  .card[data-cat="platforms"] .badge { background: rgba(244,114,182,0.12); color: var(--pink); border: 1px solid rgba(244,114,182,0.2); }
+  .card-name {
+    font-family: 'Syne', sans-serif; font-size: 17px; font-weight: 700;
+    letter-spacing: -0.01em; margin-bottom: 8px; line-height: 1.2;
+  }
+  .card-name.is-native { font-family: 'JetBrains Mono', monospace; font-size: 15px; }
+  .card-summary { font-size: 13px; color: var(--text-muted); line-height: 1.65; margin-bottom: 14px; }
+  .card-tags { display: flex; flex-wrap: wrap; gap: 4px; }
+  .tag {
+    font-family: 'JetBrains Mono', monospace; font-size: 9px; letter-spacing: 0.06em;
+    padding: 2px 7px; border-radius: 4px; background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(255,255,255,0.06); color: var(--text-dim);
+  }
+  .card-arrow {
+    position: absolute; top: 24px; right: 24px; font-size: 14px;
+    color: var(--text-dim); transition: color 0.2s, transform 0.2s;
+  }
+  .card:hover .card-arrow { color: var(--text-muted); transform: translate(2px, -2px); }
+
+  /* ── Modal ── */
+  .modal-overlay {
+    position: fixed; inset: 0; z-index: 1000; background: rgba(0,0,0,0.6);
+    backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px);
+    display: flex; align-items: center; justify-content: center; padding: 24px;
+    opacity: 0; pointer-events: none; transition: opacity 0.25s;
+  }
+  .modal-overlay.active { opacity: 1; pointer-events: auto; }
+  .modal {
+    background: #111; border: 1px solid var(--border); border-radius: 20px;
+    max-width: 560px; width: 100%; max-height: 85vh; overflow-y: auto;
+    transform: scale(0.95) translateY(10px); transition: transform 0.3s cubic-bezier(0.34,1.56,0.64,1);
+  }
+  .modal-overlay.active .modal { transform: scale(1) translateY(0); }
+  .modal-header {
+    padding: 24px 28px 16px; display: flex; align-items: flex-start;
+    justify-content: space-between; gap: 16px; border-radius: 20px 20px 0 0;
+  }
+  .modal-title-wrap { display: flex; flex-direction: column; gap: 8px; }
+  .modal-badge-row { display: flex; gap: 8px; align-items: center; flex-wrap: wrap; }
+  .modal-title { font-family: 'Syne', sans-serif; font-size: 22px; font-weight: 800; letter-spacing: -0.02em; line-height: 1.1; }
+  .modal[data-cat="commands"] .modal-title { font-family: 'JetBrains Mono', monospace; font-size: 20px; }
+  .modal-close {
+    width: 32px; height: 32px; border-radius: 8px; border: 1px solid var(--border);
+    background: var(--surface); color: var(--text-muted); cursor: pointer;
+    display: flex; align-items: center; justify-content: center; font-size: 16px;
+    transition: all 0.2s; flex-shrink: 0;
+  }
+  .modal-close:hover { background: var(--surface-hover); color: var(--text); border-color: var(--border-hover); }
+  .modal-body { padding: 24px 28px 28px; }
+  .modal-section { margin-bottom: 20px; }
+  .modal-section:last-child { margin-bottom: 0; }
+  .modal-label {
+    font-family: 'JetBrains Mono', monospace; font-size: 9px; letter-spacing: 0.18em;
+    text-transform: uppercase; color: var(--text-dim); margin-bottom: 8px;
+  }
+  .modal-text { font-size: 14px; color: var(--text-muted); line-height: 1.75; }
+  .modal-link {
+    display: inline-flex; align-items: center; gap: 6px;
+    font-family: 'JetBrains Mono', monospace; font-size: 12px; color: var(--cyan);
+    text-decoration: none; padding: 8px 14px; border-radius: 8px;
+    border: 1px solid rgba(34,211,238,0.2); background: rgba(34,211,238,0.05);
+    transition: all 0.2s; word-break: break-all;
+  }
+  .modal-link:hover { background: rgba(34,211,238,0.1); border-color: rgba(34,211,238,0.4); }
+  .modal-tags { display: flex; flex-wrap: wrap; gap: 6px; }
+  .modal-tag {
+    font-family: 'JetBrains Mono', monospace; font-size: 10px; letter-spacing: 0.08em;
+    padding: 4px 10px; border-radius: 6px; background: rgba(255,255,255,0.05);
+    border: 1px solid rgba(255,255,255,0.1); color: var(--text-muted);
+  }
+  .modal-accent-bar { height: 3px; margin: 0 28px 0; border-radius: 4px; }
+  .modal[data-cat="skills"] .modal-accent-bar { background: linear-gradient(90deg, var(--purple), transparent); }
+  .modal[data-cat="community"] .modal-accent-bar { background: linear-gradient(90deg, var(--blue), transparent); }
+  .modal[data-cat="plugins"] .modal-accent-bar { background: linear-gradient(90deg, var(--green), transparent); }
+  .modal[data-cat="commands"] .modal-accent-bar { background: linear-gradient(90deg, var(--orange), transparent); }
+  .modal[data-cat="platforms"] .modal-accent-bar { background: linear-gradient(90deg, var(--pink), transparent); }
+  .subcategory-label {
+    font-family: 'JetBrains Mono', monospace; font-size: 9px; letter-spacing: 0.12em;
+    color: var(--text-dim); text-transform: uppercase;
+  }
+
+  /* ── Platform Chips ── */
+  .platform-chips { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 12px; }
+  .platform-chip {
+    display: inline-flex; align-items: center; gap: 5px;
+    font-family: 'JetBrains Mono', monospace; font-size: 10px; letter-spacing: 0.06em;
+    padding: 4px 10px; border-radius: 20px;
+  }
+  .platform-chip.chat { background: rgba(96,165,250,0.1); border: 1px solid rgba(96,165,250,0.25); color: var(--blue); }
+  .platform-chip.claudecode { background: rgba(52,211,153,0.1); border: 1px solid rgba(52,211,153,0.25); color: var(--green); }
+  .platform-chip.cowork { background: rgba(251,191,36,0.1); border: 1px solid rgba(251,191,36,0.25); color: var(--orange); }
+
+  /* ── Theme Sections ── */
+  .theme-section { margin-bottom: 48px; }
+  .theme-heading {
+    display: flex; align-items: center; gap: 12px; margin-bottom: 16px;
+    padding-bottom: 12px; border-bottom: 1px solid var(--border);
+  }
+  .theme-heading-icon { font-size: 18px; }
+  .theme-heading-text {
+    font-family: 'Syne', sans-serif; font-size: 13px; font-weight: 700;
+    letter-spacing: 0.05em; text-transform: uppercase; color: var(--text-muted);
+  }
+  .theme-heading-count {
+    font-family: 'JetBrains Mono', monospace; font-size: 10px; color: var(--text-dim);
+    margin-left: auto; letter-spacing: 0.1em;
+  }
+  .theme-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 16px; }
+
+  .empty {
+    grid-column: 1 / -1; text-align: center; padding: 80px 0; color: var(--text-dim);
+    font-family: 'JetBrains Mono', monospace; font-size: 13px;
+  }
+  .empty-icon { font-size: 40px; margin-bottom: 16px; }
+
+  /* ── Page Tabs ── */
+  .page-tabs { display: flex; gap: 4px; padding: 32px 0 0; animation: fadeDown 0.5s ease both; }
+  .page-tab {
+    font-family: 'Syne', sans-serif; font-size: 13px; font-weight: 600; letter-spacing: 0.01em;
+    padding: 10px 22px; border-radius: 10px 10px 0 0; border: 1px solid var(--border); border-bottom: none;
+    background: var(--surface); color: var(--text-muted); cursor: pointer; transition: all 0.2s; position: relative;
+  }
+  .page-tab:hover { color: var(--text); background: var(--surface-hover); }
+  .page-tab.active { color: var(--text); background: rgba(167,139,250,0.08); border-color: rgba(167,139,250,0.25); border-bottom-color: transparent; }
+  .page-tab.active::after {
+    content: ''; position: absolute; bottom: -1px; left: 0; right: 0; height: 2px;
+    background: linear-gradient(90deg, var(--purple), var(--pink)); border-radius: 2px 2px 0 0;
+  }
+  .page-tab-divider { border-bottom: 1px solid var(--border); margin-bottom: 0; }
+
+  /* ── Install Guide ── */
+  #install-section { padding-bottom: 80px; }
+  .install-header { padding: 48px 0 40px; }
+  .install-header h2 {
+    font-family: 'Syne', sans-serif; font-size: clamp(28px, 4vw, 48px);
+    font-weight: 800; letter-spacing: -0.03em; margin-bottom: 12px;
+  }
+  .install-header p { font-size: 15px; color: var(--text-muted); max-width: 500px; line-height: 1.7; }
+  .install-subtabs {
+    display: flex; gap: 8px; margin-bottom: 36px; background: var(--surface);
+    border: 1px solid var(--border); padding: 4px; border-radius: 12px; width: fit-content;
+  }
+  .install-subtab {
+    font-family: 'Syne', sans-serif; font-size: 13px; font-weight: 600; padding: 9px 20px;
+    border-radius: 9px; border: none; background: transparent; color: var(--text-muted);
+    cursor: pointer; transition: all 0.2s;
+  }
+  .install-subtab:hover { color: var(--text); }
+  .install-subtab.active { background: rgba(255,255,255,0.08); color: var(--text); box-shadow: 0 1px 4px rgba(0,0,0,0.3); }
+  .install-content { display: none; }
+  .install-content.active { display: block; }
+  .install-steps { display: flex; flex-direction: column; gap: 16px; max-width: 760px; }
+  .step-card {
+    background: var(--surface); border: 1px solid var(--border); border-radius: 14px;
+    padding: 24px 24px 24px 20px; display: grid; grid-template-columns: 44px 1fr;
+    gap: 16px; transition: border-color 0.2s;
+  }
+  .step-card:hover { border-color: var(--border-hover); }
+  .step-num {
+    width: 32px; height: 32px; border-radius: 50%; background: rgba(167,139,250,0.12);
+    border: 1px solid rgba(167,139,250,0.25); color: var(--purple);
+    font-family: 'Syne', sans-serif; font-size: 13px; font-weight: 700;
+    display: flex; align-items: center; justify-content: center; flex-shrink: 0; margin-top: 2px;
+  }
+  .step-title { font-family: 'Syne', sans-serif; font-size: 15px; font-weight: 700; margin-bottom: 6px; }
+  .step-desc { font-size: 13px; color: var(--text-muted); line-height: 1.65; margin-bottom: 12px; }
+  .step-desc:last-child { margin-bottom: 0; }
+  .code-block {
+    background: rgba(0,0,0,0.5); border: 1px solid rgba(255,255,255,0.07); border-radius: 8px;
+    padding: 14px 16px; margin: 10px 0; position: relative;
+  }
+  .code-block pre {
+    font-family: 'JetBrains Mono', monospace; font-size: 12px; color: #a8d8a8;
+    line-height: 1.6; white-space: pre; overflow-x: auto;
+  }
+  .code-block .comment { color: rgba(255,255,255,0.25); }
+  .code-block .cmd { color: #7dd3fc; }
+  .code-copy {
+    position: absolute; top: 8px; right: 8px; font-family: 'JetBrains Mono', monospace;
+    font-size: 9px; letter-spacing: 0.1em; padding: 3px 8px; border-radius: 4px;
+    border: 1px solid rgba(255,255,255,0.1); background: rgba(255,255,255,0.05);
+    color: var(--text-dim); cursor: pointer; transition: all 0.2s;
+  }
+  .code-copy:hover { color: var(--text-muted); border-color: var(--border-hover); }
+  .install-note {
+    background: rgba(251,191,36,0.06); border: 1px solid rgba(251,191,36,0.15); border-radius: 10px;
+    padding: 12px 16px; font-size: 12px; color: rgba(251,191,36,0.8); margin-top: 10px;
+    font-family: 'JetBrains Mono', monospace; line-height: 1.6;
+  }
+  .install-note::before { content: '\26A0 '; }
+  .path-chips { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 10px; }
+  .path-chip {
+    font-family: 'JetBrains Mono', monospace; font-size: 11px; padding: 5px 10px;
+    border-radius: 6px; border: 1px solid var(--border); background: rgba(0,0,0,0.3); color: var(--text-muted);
+  }
+  .path-chip .os { color: var(--text-dim); font-size: 9px; letter-spacing: 0.1em; text-transform: uppercase; display: block; margin-bottom: 2px; }
+
+  /* ── Admin Section ── */
+  #admin-section { padding-bottom: 80px; display: none; }
+  .admin-header-bar {
+    display: flex; align-items: center; gap: 12px; padding: 24px 0 32px;
+    border-bottom: 1px solid var(--border); margin-bottom: 32px;
+  }
+  .admin-avatar { width: 36px; height: 36px; border-radius: 50%; border: 2px solid rgba(52,211,153,0.3); }
+  .admin-name { font-family: 'Syne', sans-serif; font-size: 16px; font-weight: 700; }
+  .admin-badge {
+    font-family: 'JetBrains Mono', monospace; font-size: 9px; letter-spacing: 0.1em;
+    text-transform: uppercase; padding: 4px 10px; border-radius: 6px;
+    background: rgba(52,211,153,0.1); border: 1px solid rgba(52,211,153,0.2); color: var(--green);
+  }
+  .admin-logout {
+    margin-left: auto; font-family: 'JetBrains Mono', monospace; font-size: 11px;
+    color: var(--text-dim); cursor: pointer; padding: 6px 12px; border-radius: 6px;
+    border: 1px solid var(--border); background: transparent; transition: all 0.2s;
+  }
+  .admin-logout:hover { color: var(--red); border-color: rgba(248,113,113,0.3); }
+
+  /* Analytics */
+  .analytics-title {
+    font-family: 'JetBrains Mono', monospace; font-size: 10px; letter-spacing: 0.15em;
+    text-transform: uppercase; color: var(--text-dim); margin-bottom: 16px;
+  }
+  .analytics-cards { display: grid; grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)); gap: 12px; margin-bottom: 20px; }
+  .analytics-card {
+    background: var(--surface); border: 1px solid var(--border); border-radius: 12px; padding: 16px;
+    transition: border-color 0.2s;
+  }
+  .analytics-card:hover { border-color: var(--border-hover); }
+  .analytics-card-label {
+    font-family: 'JetBrains Mono', monospace; font-size: 10px; letter-spacing: 0.1em;
+    text-transform: uppercase; color: var(--text-dim); margin-bottom: 6px;
+  }
+  .analytics-card-value { font-family: 'Syne', sans-serif; font-size: 26px; font-weight: 700; }
+  .analytics-card-sub { font-size: 11px; color: var(--text-dim); margin-top: 4px; }
+  .analytics-chart {
+    background: var(--surface); border: 1px solid var(--border); border-radius: 12px;
+    padding: 20px; margin-bottom: 36px; height: 180px; position: relative;
+  }
+  .chart-bars { display: flex; align-items: flex-end; gap: 8px; height: 130px; padding-top: 10px; }
+  .chart-bar-wrap { flex: 1; display: flex; flex-direction: column; align-items: center; gap: 6px; }
+  .chart-bar {
+    width: 100%; border-radius: 4px 4px 0 0; background: var(--purple); min-height: 4px;
+    transition: height 0.6s cubic-bezier(0.34, 1.56, 0.64, 1); position: relative;
+  }
+  .chart-bar:hover { background: var(--cyan); }
+  .chart-bar-val {
+    position: absolute; top: -18px; left: 50%; transform: translateX(-50%);
+    font-family: 'JetBrains Mono', monospace; font-size: 9px; color: var(--text-dim);
+    opacity: 0; transition: opacity 0.2s;
+  }
+  .chart-bar:hover .chart-bar-val { opacity: 1; }
+  .chart-label { font-family: 'JetBrains Mono', monospace; font-size: 9px; color: var(--text-dim); }
+
+  /* Admin Table */
+  .admin-toolbar {
+    display: flex; align-items: center; gap: 12px; margin-bottom: 16px; flex-wrap: wrap;
+  }
+  .admin-toolbar-title {
+    font-family: 'JetBrains Mono', monospace; font-size: 10px; letter-spacing: 0.15em;
+    text-transform: uppercase; color: var(--text-dim);
+  }
+  .admin-add-btn {
+    margin-left: auto; font-family: 'JetBrains Mono', monospace; font-size: 11px;
+    padding: 8px 16px; border-radius: 8px; border: none; cursor: pointer;
+    background: var(--purple); color: #080808; font-weight: 500; transition: all 0.2s;
+    letter-spacing: 0.04em;
+  }
+  .admin-add-btn:hover { background: var(--cyan); transform: translateY(-1px); }
+  .admin-search {
+    width: 100%; max-width: 280px; background: var(--surface); border: 1px solid var(--border);
+    border-radius: 8px; padding: 8px 12px; color: var(--text); font-family: 'DM Sans', sans-serif;
+    font-size: 13px; outline: none; transition: border-color 0.2s;
+  }
+  .admin-search::placeholder { color: var(--text-dim); }
+  .admin-search:focus { border-color: var(--border-hover); }
+  .admin-filter {
+    background: var(--surface); border: 1px solid var(--border); border-radius: 8px;
+    padding: 8px 12px; color: var(--text-muted); font-family: 'DM Sans', sans-serif;
+    font-size: 13px; outline: none; cursor: pointer; appearance: none;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' fill='rgba(232,230,227,0.35)' viewBox='0 0 16 16'%3E%3Cpath d='M8 11L3 6h10z'/%3E%3C/svg%3E");
+    background-repeat: no-repeat; background-position: right 10px center; padding-right: 30px;
+  }
+
+  .admin-table-wrap {
+    border: 1px solid var(--border); border-radius: 12px; overflow: hidden; margin-bottom: 20px;
+  }
+  .admin-table { width: 100%; border-collapse: collapse; }
+  .admin-table th {
+    text-align: left; padding: 10px 16px; font-family: 'JetBrains Mono', monospace;
+    font-size: 9px; letter-spacing: 0.12em; text-transform: uppercase;
+    color: var(--text-dim); background: var(--surface); font-weight: 400; border-bottom: 1px solid var(--border);
+  }
+  .admin-table td { padding: 10px 16px; font-size: 13px; border-bottom: 1px solid var(--border); }
+  .admin-table tr:last-child td { border-bottom: none; }
+  .admin-table tr:hover td { background: rgba(255,255,255,0.02); }
+  .admin-table .cat-badge {
+    font-family: 'JetBrains Mono', monospace; font-size: 9px; letter-spacing: 0.08em;
+    text-transform: uppercase; padding: 3px 8px; border-radius: 5px; white-space: nowrap;
+  }
+  .cat-badge.skills { background: rgba(167,139,250,0.12); color: var(--purple); }
+  .cat-badge.community { background: rgba(96,165,250,0.12); color: var(--blue); }
+  .cat-badge.plugins { background: rgba(52,211,153,0.12); color: var(--green); }
+  .cat-badge.commands { background: rgba(251,191,36,0.12); color: var(--orange); }
+  .cat-badge.platforms { background: rgba(244,114,182,0.12); color: var(--pink); }
+  .cat-badge.install { background: rgba(34,211,238,0.12); color: var(--cyan); }
+  .admin-action {
+    font-family: 'JetBrains Mono', monospace; font-size: 10px; cursor: pointer;
+    padding: 4px 8px; border-radius: 4px; border: none; background: transparent;
+    transition: all 0.15s; letter-spacing: 0.04em;
+  }
+  .admin-action.edit { color: var(--cyan); }
+  .admin-action.edit:hover { background: rgba(34,211,238,0.1); }
+  .admin-action.delete { color: var(--red); }
+  .admin-action.delete:hover { background: rgba(248,113,113,0.1); }
+
+  /* ── Edit Modal ── */
+  .edit-overlay {
+    position: fixed; inset: 0; z-index: 1100; background: rgba(0,0,0,0.7);
+    backdrop-filter: blur(8px); display: flex; align-items: center; justify-content: center;
+    padding: 24px; opacity: 0; pointer-events: none; transition: opacity 0.25s;
+  }
+  .edit-overlay.active { opacity: 1; pointer-events: auto; }
+  .edit-modal {
+    background: #111; border: 1px solid var(--border); border-radius: 20px;
+    max-width: 600px; width: 100%; max-height: 85vh; overflow-y: auto;
+    transform: scale(0.95); transition: transform 0.3s cubic-bezier(0.34,1.56,0.64,1);
+  }
+  .edit-overlay.active .edit-modal { transform: scale(1); }
+  .edit-modal-header {
+    padding: 20px 24px 16px; display: flex; align-items: center; justify-content: space-between;
+    border-bottom: 1px solid var(--border);
+  }
+  .edit-modal-title { font-family: 'Syne', sans-serif; font-size: 18px; font-weight: 700; }
+  .edit-modal-body { padding: 20px 24px 24px; }
+  .edit-field { margin-bottom: 16px; }
+  .edit-label {
+    display: block; font-family: 'JetBrains Mono', monospace; font-size: 9px;
+    letter-spacing: 0.15em; text-transform: uppercase; color: var(--text-dim); margin-bottom: 6px;
+  }
+  .edit-input, .edit-select, .edit-textarea {
+    width: 100%; background: var(--surface); border: 1px solid var(--border); border-radius: 8px;
+    padding: 10px 14px; color: var(--text); font-family: 'DM Sans', sans-serif; font-size: 14px;
+    outline: none; transition: border-color 0.2s;
+  }
+  .edit-input:focus, .edit-select:focus, .edit-textarea:focus { border-color: var(--purple); }
+  .edit-textarea { min-height: 80px; resize: vertical; line-height: 1.6; }
+  .edit-select { cursor: pointer; appearance: none;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' fill='rgba(232,230,227,0.35)' viewBox='0 0 16 16'%3E%3Cpath d='M8 11L3 6h10z'/%3E%3C/svg%3E");
+    background-repeat: no-repeat; background-position: right 12px center; padding-right: 32px;
+  }
+  .edit-row { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+  .edit-checkbox-row { display: flex; align-items: center; gap: 10px; margin-bottom: 16px; }
+  .edit-checkbox-row input[type="checkbox"] { accent-color: var(--purple); width: 16px; height: 16px; }
+  .edit-checkbox-row label { font-size: 13px; color: var(--text-muted); }
+  .edit-actions { display: flex; gap: 10px; justify-content: flex-end; padding-top: 8px; }
+  .edit-btn {
+    font-family: 'JetBrains Mono', monospace; font-size: 12px; padding: 10px 24px;
+    border-radius: 8px; border: none; cursor: pointer; transition: all 0.2s; letter-spacing: 0.04em;
+  }
+  .edit-btn.cancel { background: var(--surface); color: var(--text-muted); border: 1px solid var(--border); }
+  .edit-btn.cancel:hover { color: var(--text); border-color: var(--border-hover); }
+  .edit-btn.save { background: var(--purple); color: #080808; font-weight: 500; }
+  .edit-btn.save:hover { background: var(--cyan); }
+  .edit-btn.save:disabled { opacity: 0.4; cursor: not-allowed; }
+
+  /* ── Confirm Dialog ── */
+  .confirm-overlay {
+    position: fixed; inset: 0; z-index: 1200; background: rgba(0,0,0,0.7);
+    display: flex; align-items: center; justify-content: center; padding: 24px;
+    opacity: 0; pointer-events: none; transition: opacity 0.2s;
+  }
+  .confirm-overlay.active { opacity: 1; pointer-events: auto; }
+  .confirm-box {
+    background: #111; border: 1px solid var(--border); border-radius: 16px;
+    padding: 28px; max-width: 400px; width: 100%; text-align: center;
+  }
+  .confirm-text { font-size: 15px; color: var(--text-muted); line-height: 1.6; margin-bottom: 20px; }
+  .confirm-name { color: var(--text); font-weight: 500; }
+  .confirm-actions { display: flex; gap: 10px; justify-content: center; }
+  .confirm-btn {
+    font-family: 'JetBrains Mono', monospace; font-size: 12px; padding: 10px 24px;
+    border-radius: 8px; border: none; cursor: pointer; transition: all 0.2s;
+  }
+  .confirm-btn.no { background: var(--surface); color: var(--text-muted); border: 1px solid var(--border); }
+  .confirm-btn.yes { background: var(--red); color: #080808; font-weight: 500; }
+  .confirm-btn.yes:hover { background: #fca5a5; }
+
+  /* ── Toast ── */
+  .toast {
+    position: fixed; bottom: 24px; right: 24px; z-index: 2000;
+    font-family: 'JetBrains Mono', monospace; font-size: 12px; padding: 12px 20px;
+    border-radius: 10px; color: #080808; font-weight: 500;
+    transform: translateY(20px); opacity: 0; transition: all 0.3s;
+    pointer-events: none;
+  }
+  .toast.show { transform: translateY(0); opacity: 1; }
+  .toast.success { background: var(--green); }
+  .toast.error { background: var(--red); }
+
+  /* ── Footer ── */
+  footer { position: relative; z-index: 1; border-top: 1px solid var(--border); padding: 24px 0; text-align: center; }
+  .footer-inner { max-width: 1440px; margin: 0 auto; padding: 0 24px; }
+  .footer-text { font-family: 'JetBrains Mono', monospace; font-size: 11px; color: var(--text-dim); letter-spacing: 0.08em; }
+
+  /* ── Animations ── */
+  @keyframes fadeDown { from { opacity: 0; transform: translateY(-12px); } to { opacity: 1; transform: translateY(0); } }
+  @keyframes cardIn { from { opacity: 0; transform: translateY(16px) scale(0.97); } to { opacity: 1; transform: translateY(0) scale(1); } }
+  @keyframes spin { to { transform: rotate(360deg); } }
+  .spinner { width: 16px; height: 16px; border: 2px solid var(--border); border-top-color: var(--purple); border-radius: 50%; animation: spin 0.6s linear infinite; display: inline-block; }
+
+  /* ── Responsive ── */
+  @media (max-width: 640px) {
+    .controls-inner { flex-direction: column; align-items: stretch; }
+    .search-wrap { max-width: 100%; }
+    .grid { grid-template-columns: 1fr; }
+    h1 { font-size: 36px; }
+    .stats { gap: 20px; }
+    .modal { border-radius: 16px; }
+    .modal-header { padding: 20px 20px 16px; }
+    .modal-body { padding: 16px 20px 20px; }
+    .analytics-cards { grid-template-columns: 1fr 1fr; }
+    .admin-toolbar { flex-direction: column; align-items: stretch; }
+    .admin-add-btn { margin-left: 0; }
+    .edit-row { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<div class="bg-mesh"></div>
+<div class="bg-grid"></div>
+<div class="bg-noise"></div>
+
+<div class="wrapper">
+  <div class="page-tabs">
+    <button class="page-tab active" data-page="skills">&#x2B21; Skills &amp; Plugins</button>
+    <button class="page-tab" data-page="install">&#x1F4E6; Installations Anleitung</button>
+    <button class="page-tab" data-page="admin" id="admin-tab-btn" style="display:none">&#x1F6E1; Admin</button>
+  </div>
+  <div class="page-tab-divider"></div>
+
+  <header id="skills-header">
+    <div class="header-eyebrow">Claude Ecosystem</div>
+    <h1>Skills & <span>Plugins</span><br>Directory</h1>
+    <p class="header-desc">Alle verf&uuml;gbaren Skills, Plugins, MCPs und Commands f&uuml;r Claude auf einen Blick &mdash; klick auf eine Karte f&uuml;r Details.</p>
+    <div class="header-row">
+      <div class="stats">
+        <div class="stat"><span class="stat-num" id="stat-skills">0</span><span class="stat-label">Anthropic Skills</span></div>
+        <div class="stat"><span class="stat-num" id="stat-community">0</span><span class="stat-label">Community Skills</span></div>
+        <div class="stat"><span class="stat-num" id="stat-plugins">0</span><span class="stat-label">Plugins &amp; MCPs</span></div>
+        <div class="stat"><span class="stat-num" id="stat-commands">0</span><span class="stat-label">Slash Commands</span></div>
+      </div>
+      <button class="login-btn" id="login-btn" onclick="handleLogin()">&#x1F511; Admin Login</button>
+    </div>
+  </header>
+</div>
+
+<div class="controls" id="main-controls">
+  <div class="controls-inner">
+    <div class="search-wrap">
+      <span class="search-icon">&#x2315;</span>
+      <input type="text" id="search" placeholder="Suchen&hellip;" autocomplete="off" spellcheck="false">
+    </div>
+    <div class="filters">
+      <button class="filter-btn active" data-cat="all">Alle</button>
+      <button class="filter-btn" data-cat="skills">&#x2726; Anthropic Skills</button>
+      <button class="filter-btn" data-cat="community">&#x25C8; Community</button>
+      <button class="filter-btn" data-cat="plugins">&#x2B21; Plugins &amp; MCPs</button>
+      <button class="filter-btn" data-cat="commands">/ Commands</button>
+      <button class="filter-btn" data-cat="platforms">&#x25CE; Plattformen</button>
+    </div>
+  </div>
+</div>
+
+<div class="wrapper" id="skills-grid-wrapper">
+  <div class="result-info" id="result-info"></div>
+  <div class="grid" id="grid"></div>
+</div>
+
+<div class="wrapper" id="install-section" style="display:none">
+  <div class="install-header">
+    <div class="header-eyebrow">Einrichtung</div>
+    <h2>Skills &amp; Plugins<br><span style="background:linear-gradient(135deg,var(--green),var(--cyan));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text">Installieren</span></h2>
+    <p>W&auml;hle die passende Methode f&uuml;r dein Setup &mdash; automatisch via Claude Code CLI oder manuell per ZIP-Download.</p>
+  </div>
+  <div class="install-subtabs">
+    <button class="install-subtab active" data-install="auto">&#x26A1; Claude Code Auto</button>
+    <button class="install-subtab" data-install="zip">&#x1F4E6; ZIP Installation</button>
+  </div>
+  <div class="install-content active" id="install-auto"></div>
+  <div class="install-content" id="install-zip"></div>
+</div>
+
+<div class="wrapper" id="admin-section" style="display:none">
+  <div class="admin-header-bar">
+    <img class="admin-avatar" id="admin-avatar" src="" alt="">
+    <span class="admin-name" id="admin-name"></span>
+    <span class="admin-badge">Admin via GitHub</span>
+    <button class="admin-logout" onclick="handleLogout()">Logout</button>
+  </div>
+
+  <div class="analytics-title">Besucher-Statistiken</div>
+  <div class="analytics-cards" id="analytics-cards"></div>
+  <div class="analytics-chart">
+    <div class="chart-bars" id="analytics-chart-bars"></div>
+  </div>
+
+  <div class="admin-toolbar">
+    <span class="admin-toolbar-title">Items verwalten</span>
+    <input type="text" class="admin-search" id="admin-search" placeholder="Items suchen...">
+    <select class="admin-filter" id="admin-filter">
+      <option value="all">Alle Kategorien</option>
+      <option value="skills">Anthropic Skills</option>
+      <option value="community">Community</option>
+      <option value="plugins">Plugins &amp; MCPs</option>
+      <option value="commands">Commands</option>
+      <option value="platforms">Plattformen</option>
+      <option value="install-auto">Install: Auto</option>
+      <option value="install-zip">Install: ZIP</option>
+    </select>
+    <button class="admin-add-btn" onclick="openEditModal(null)">+ Neuer Eintrag</button>
+  </div>
+  <div class="admin-table-wrap">
+    <table class="admin-table">
+      <thead><tr><th>Name</th><th>Kategorie</th><th>Sub</th><th style="text-align:right">Aktionen</th></tr></thead>
+      <tbody id="admin-table-body"></tbody>
+    </table>
+  </div>
+</div>
+
+<footer>
+  <div class="footer-inner">
+    <p class="footer-text">Claude Skills &amp; Plugins Directory &mdash; Stand April 2026</p>
+  </div>
+</footer>
+
+<!-- Detail Modal -->
+<div class="modal-overlay" id="modal-overlay">
+  <div class="modal" id="modal">
+    <div class="modal-header">
+      <div class="modal-title-wrap">
+        <div class="modal-badge-row"><span class="badge" id="modal-badge"></span><span class="subcategory-label" id="modal-sub"></span></div>
+        <div class="modal-title" id="modal-title"></div>
+      </div>
+      <button class="modal-close" id="modal-close">&#x2715;</button>
+    </div>
+    <div class="modal-accent-bar" id="modal-accent"></div>
+    <div class="modal-body">
+      <div class="modal-section"><div class="modal-label">Was es macht</div><p class="modal-text" id="modal-details"></p></div>
+      <div class="modal-section" id="modal-link-section"><div class="modal-label">Link</div><a class="modal-link" id="modal-link" href="#" target="_blank" rel="noopener">&#x2197; GitHub &ouml;ffnen</a></div>
+      <div class="modal-section" id="modal-platforms-section" style="display:none"><div class="modal-label">Funktioniert in</div><div class="platform-chips" id="modal-platforms"></div></div>
+      <div class="modal-section"><div class="modal-label">Tags</div><div class="modal-tags" id="modal-tags"></div></div>
+    </div>
+  </div>
+</div>
+
+<!-- Edit Modal -->
+<div class="edit-overlay" id="edit-overlay">
+  <div class="edit-modal">
+    <div class="edit-modal-header">
+      <span class="edit-modal-title" id="edit-modal-title">Neuer Eintrag</span>
+      <button class="modal-close" onclick="closeEditModal()">&#x2715;</button>
+    </div>
+    <div class="edit-modal-body">
+      <div class="edit-field">
+        <label class="edit-label">Typ</label>
+        <select class="edit-select" id="edit-type" onchange="toggleEditFields()">
+          <option value="item">Skill / Plugin / Command / Plattform</option>
+          <option value="install">Installations-Schritt</option>
+        </select>
+      </div>
+
+      <!-- Item Fields -->
+      <div id="edit-item-fields">
+        <div class="edit-row">
+          <div class="edit-field"><label class="edit-label">Name</label><input class="edit-input" id="edit-name"></div>
+          <div class="edit-field">
+            <label class="edit-label">Kategorie</label>
+            <select class="edit-select" id="edit-cat">
+              <option value="skills">Anthropic Skill</option>
+              <option value="community">Community</option>
+              <option value="plugins">Plugin &amp; MCP</option>
+              <option value="commands">Command</option>
+              <option value="platforms">Plattform</option>
+            </select>
+          </div>
+        </div>
+        <div class="edit-row">
+          <div class="edit-field"><label class="edit-label">Sub-Kategorie</label><input class="edit-input" id="edit-sub"></div>
+          <div class="edit-field"><label class="edit-label">Icon (Emoji)</label><input class="edit-input" id="edit-icon" style="font-size:20px"></div>
+        </div>
+        <div class="edit-field"><label class="edit-label">Tags (kommasepariert)</label><input class="edit-input" id="edit-tags"></div>
+        <div class="edit-field"><label class="edit-label">URL (optional)</label><input class="edit-input" id="edit-url" placeholder="https://..."></div>
+        <div class="edit-field"><label class="edit-label">Summary</label><textarea class="edit-textarea" id="edit-summary" rows="2"></textarea></div>
+        <div class="edit-field"><label class="edit-label">Details</label><textarea class="edit-textarea" id="edit-details" rows="4"></textarea></div>
+        <div class="edit-checkbox-row">
+          <input type="checkbox" id="edit-native"><label for="edit-native">Native Command (Monospace-Name)</label>
+        </div>
+        <div class="edit-field">
+          <label class="edit-label">Plattformen (kommasepariert: chat, claudecode, cowork)</label>
+          <input class="edit-input" id="edit-platforms" placeholder="chat, claudecode">
+        </div>
+      </div>
+
+      <!-- Install Step Fields -->
+      <div id="edit-install-fields" style="display:none">
+        <div class="edit-row">
+          <div class="edit-field">
+            <label class="edit-label">Install-Typ</label>
+            <select class="edit-select" id="edit-install-type"><option value="auto">Auto-Install</option><option value="zip">ZIP-Install</option></select>
+          </div>
+          <div class="edit-field"><label class="edit-label">Schritt-Nr.</label><input class="edit-input" id="edit-step-num" type="number" min="1"></div>
+        </div>
+        <div class="edit-field"><label class="edit-label">Titel</label><input class="edit-input" id="edit-step-title"></div>
+        <div class="edit-field"><label class="edit-label">Beschreibung</label><textarea class="edit-textarea" id="edit-step-desc" rows="3"></textarea></div>
+        <div class="edit-field"><label class="edit-label">Code-Block (optional)</label><textarea class="edit-textarea" id="edit-step-code" rows="4" style="font-family:'JetBrains Mono',monospace;font-size:12px"></textarea></div>
+        <div class="edit-field"><label class="edit-label">Hinweis/Note (optional)</label><input class="edit-input" id="edit-step-note"></div>
+      </div>
+
+      <div class="edit-actions">
+        <button class="edit-btn cancel" onclick="closeEditModal()">Abbrechen</button>
+        <button class="edit-btn save" id="edit-save-btn" onclick="saveEdit()">Speichern</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Confirm Dialog -->
+<div class="confirm-overlay" id="confirm-overlay">
+  <div class="confirm-box">
+    <p class="confirm-text">Bist du sicher, dass du <span class="confirm-name" id="confirm-name"></span> l&ouml;schen m&ouml;chtest?</p>
+    <div class="confirm-actions">
+      <button class="confirm-btn no" onclick="closeConfirm()">Abbrechen</button>
+      <button class="confirm-btn yes" id="confirm-yes-btn">L&ouml;schen</button>
+    </div>
+  </div>
+</div>
+
+<!-- Toast -->
+<div class="toast" id="toast"></div>
+
+<!-- GoatCounter (replace YOUR_SITE with actual GoatCounter site code) -->
+<script data-goatcounter="https://YOUR_SITE.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
+
+<script>
+// ═══════════════════════════════════════════
+// CONFIG — change these for your deployment
+// ═══════════════════════════════════════════
+const CONFIG = {
+  GITHUB_CLIENT_ID: 'YOUR_GITHUB_CLIENT_ID',
+  OAUTH_WORKER_URL: 'https://your-worker.workers.dev',
+  ALLOWED_ADMIN: 'YOUR_GITHUB_USERNAME',
+  REPO_OWNER: 'YOUR_GITHUB_USERNAME',
+  REPO_NAME: 'YOUR_REPO_NAME',
+  DATA_PATH: 'data.json',
+  GOATCOUNTER_SITE: 'YOUR_SITE'
+};
+
+// ═══════════════════════════════════════════
+// STATE
+// ═══════════════════════════════════════════
+let DATA = { items: [], installSteps: { auto: [], zip: [] }, meta: {} };
+let activeFilter = 'all';
+let searchQuery = '';
+let adminUser = null;
+let dataSHA = null;
+let editingItem = null;
+let editingType = null;
+
+const LABELS = { skills: 'Anthropic Skill', community: 'Community', plugins: 'Plugin & MCP', commands: 'Command', platforms: 'Plattform' };
+const PLATFORM_LABELS = {
+  chat: { label: '\uD83D\uDCAC Chat', cls: 'chat' },
+  claudecode: { label: '\uD83D\uDDA5\uFE0F Claude Code', cls: 'claudecode' },
+  cowork: { label: '\uD83D\uDD04 Cowork', cls: 'cowork' }
+};
+const THEME_MAP = {
+  'Design & UI':             { icon: '\uD83C\uDFA8', ids: [1,6,7,8] },
+  'Dokumente':               { icon: '\uD83D\uDCC4', ids: [2,3,4,5,54,55,56,57] },
+  'Coding & Dev':            { icon: '\uD83D\uDCBB', ids: [9,10,12,14,23,25,27,31,47,48,49,50,51,52,53] },
+  'Recherche':               { icon: '\uD83D\uDD0D', ids: [11,17,18,24,29] },
+  'Agents & Automatisierung':{ icon: '\uD83E\uDD16', ids: [13,21,22,26,28,30] },
+  'Marketing & SEO':         { icon: '\uD83D\uDCE3', ids: [15,16] },
+  'Wissensmanagement':       { icon: '\uD83E\uDDE0', ids: [19,20] },
+  'Allgemein':               { icon: '\u26A1', ids: [37,38,39,40,41,42,43,44,45,46] },
+  'Plattformen':             { icon: '\uD83C\uDFDB\uFE0F', ids: [32,33,34,35,36] }
+};
+
+const ITEM_THEME = {};
+Object.entries(THEME_MAP).forEach(([t, {ids}]) => ids.forEach(id => ITEM_THEME[id] = t));
+
+// ═══════════════════════════════════════════
+// DATA LOADING
+// ═══════════════════════════════════════════
+async function loadData() {
+  try {
+    const resp = await fetch('data.json?t=' + Date.now());
+    DATA = await resp.json();
+  } catch (e) {
+    console.error('Failed to load data.json', e);
+  }
+  updateStats();
+  render();
+  renderInstallSteps();
+}
+
+function updateStats() {
+  const counts = { skills: 0, community: 0, plugins: 0, commands: 0 };
+  DATA.items.forEach(i => { if (counts[i.cat] !== undefined) counts[i.cat]++; });
+  document.getElementById('stat-skills').textContent = counts.skills;
+  document.getElementById('stat-community').textContent = counts.community;
+  document.getElementById('stat-plugins').textContent = counts.plugins;
+  document.getElementById('stat-commands').textContent = counts.commands;
+}
+
+// ═══════════════════════════════════════════
+// RENDER — Skills Grid
+// ═══════════════════════════════════════════
+function buildCard(item, i) {
+  const card = document.createElement('div');
+  card.className = 'card';
+  card.dataset.cat = item.cat;
+  card.style.animationDelay = `${i * 0.03}s`;
+  const platformsHTML = item.platforms && item.platforms.length
+    ? `<div class="platform-chips">${item.platforms.map(p => PLATFORM_LABELS[p] ? `<span class="platform-chip ${PLATFORM_LABELS[p].cls}">${PLATFORM_LABELS[p].label}</span>` : '').join('')}</div>` : '';
+  card.innerHTML = `
+    <div class="card-header"><div class="card-icon">${item.icon}</div><span class="badge">${LABELS[item.cat]}</span></div>
+    <div class="card-name${item.native ? ' is-native' : ''}">${item.name}</div>
+    <div class="card-summary">${item.summary}</div>
+    <div class="card-tags">${item.tags.map(t => `<span class="tag">${t}</span>`).join('')}</div>
+    ${platformsHTML}
+    <span class="card-arrow">\u2197</span>`;
+  card.addEventListener('click', () => openModal(item));
+  return card;
+}
+
+function render() {
+  const q = searchQuery.toLowerCase();
+  const filtered = DATA.items.filter(item => {
+    const catMatch = activeFilter === 'all' || item.cat === activeFilter;
+    const qMatch = !q || item.name.toLowerCase().includes(q) || item.summary.toLowerCase().includes(q) ||
+      item.tags.some(t => t.toLowerCase().includes(q)) || item.sub.toLowerCase().includes(q);
+    return catMatch && qMatch;
+  });
+  const grid = document.getElementById('grid');
+  const info = document.getElementById('result-info');
+  info.textContent = filtered.length === DATA.items.length
+    ? `${DATA.items.length} Eintr\u00E4ge` : `${filtered.length} von ${DATA.items.length} Eintr\u00E4gen`;
+  grid.innerHTML = '';
+  grid.className = activeFilter === 'all' ? '' : 'grid';
+  if (filtered.length === 0) {
+    grid.innerHTML = `<div class="empty"><div class="empty-icon">\u25CC</div>Keine Eintr\u00E4ge f\u00FCr "${searchQuery}"</div>`;
+    return;
+  }
+  if (activeFilter === 'all') {
+    let ci = 0;
+    Object.entries(THEME_MAP).forEach(([name, {icon}]) => {
+      const items = filtered.filter(i => ITEM_THEME[i.id] === name);
+      if (!items.length) return;
+      const sec = document.createElement('div'); sec.className = 'theme-section';
+      const hd = document.createElement('div'); hd.className = 'theme-heading';
+      hd.innerHTML = `<span class="theme-heading-icon">${icon}</span><span class="theme-heading-text">${name}</span><span class="theme-heading-count">${items.length} Eintr\u00E4ge</span>`;
+      sec.appendChild(hd);
+      const tg = document.createElement('div'); tg.className = 'theme-grid';
+      items.forEach(item => tg.appendChild(buildCard(item, ci++)));
+      sec.appendChild(tg); grid.appendChild(sec);
+    });
+    const ungrouped = filtered.filter(i => !ITEM_THEME[i.id]);
+    if (ungrouped.length) {
+      const sec = document.createElement('div'); sec.className = 'theme-section';
+      const tg = document.createElement('div'); tg.className = 'theme-grid';
+      ungrouped.forEach(item => tg.appendChild(buildCard(item, ci++)));
+      sec.appendChild(tg); grid.appendChild(sec);
+    }
+  } else {
+    filtered.forEach((item, i) => grid.appendChild(buildCard(item, i)));
+  }
+}
+
+// ═══════════════════════════════════════════
+// RENDER — Install Steps
+// ═══════════════════════════════════════════
+function renderInstallSteps() {
+  ['auto', 'zip'].forEach(type => {
+    const container = document.getElementById('install-' + type);
+    const steps = (DATA.installSteps[type] || []).sort((a, b) => a.step - b.step);
+    container.innerHTML = '<div class="install-steps">' + steps.map(s => {
+      let codeHTML = '';
+      if (s.code) {
+        const highlighted = s.code.replace(/^(#.*)$/gm, '<span class="comment">$1</span>')
+          .replace(/^(\/\/.*)$/gm, '<span class="comment">$1</span>');
+        codeHTML = `<div class="code-block"><button class="code-copy" onclick="copyCode(this)">COPY</button><pre>${highlighted}</pre></div>`;
+      }
+      let noteHTML = s.note ? `<div class="install-note">${s.note}</div>` : '';
+      if (type === 'zip' && s.step === 3) {
+        noteHTML = `<div class="path-chips"><div class="path-chip"><span class="os">Mac / Linux</span>~/.claude/skills/&lt;skill-name&gt;/</div><div class="path-chip"><span class="os">Windows</span>%APPDATA%\\Claude\\skills\\&lt;skill-name&gt;\\</div></div>` + noteHTML;
+      }
+      return `<div class="step-card"><div class="step-num">${s.step}</div><div class="step-body"><div class="step-title">${s.title}</div><div class="step-desc">${s.desc}</div>${codeHTML}${noteHTML}</div></div>`;
+    }).join('') + '</div>';
+  });
+}
+
+// ═══════════════════════════════════════════
+// MODAL — Detail View
+// ═══════════════════════════════════════════
+function openModal(item) {
+  const overlay = document.getElementById('modal-overlay');
+  const modal = document.getElementById('modal');
+  modal.dataset.cat = item.cat;
+  document.getElementById('modal-badge').textContent = LABELS[item.cat];
+  document.getElementById('modal-badge').className = 'badge';
+  document.getElementById('modal-sub').textContent = item.sub;
+  document.getElementById('modal-title').textContent = item.name;
+  document.getElementById('modal-details').textContent = item.details;
+  const linkSec = document.getElementById('modal-link-section');
+  const link = document.getElementById('modal-link');
+  if (item.url) { linkSec.style.display = ''; link.href = item.url; link.textContent = '\u2197 ' + item.url.replace('https://', ''); }
+  else { linkSec.style.display = 'none'; }
+  document.getElementById('modal-tags').innerHTML = item.tags.map(t => `<span class="modal-tag">${t}</span>`).join('');
+  const pSec = document.getElementById('modal-platforms-section');
+  if (item.platforms && item.platforms.length) {
+    document.getElementById('modal-platforms').innerHTML = item.platforms.map(p => PLATFORM_LABELS[p] ? `<span class="platform-chip ${PLATFORM_LABELS[p].cls}">${PLATFORM_LABELS[p].label}</span>` : '').join('');
+    pSec.style.display = '';
+  } else { pSec.style.display = 'none'; }
+  overlay.classList.add('active');
+  document.body.style.overflow = 'hidden';
+}
+
+function closeModal() {
+  document.getElementById('modal-overlay').classList.remove('active');
+  document.body.style.overflow = '';
+}
+
+// ═══════════════════════════════════════════
+// AUTH — GitHub OAuth
+// ═══════════════════════════════════════════
+function handleLogin() {
+  if (adminUser) return;
+  const redirectUri = window.location.origin + window.location.pathname;
+  const url = `https://github.com/login/oauth/authorize?client_id=${CONFIG.GITHUB_CLIENT_ID}&redirect_uri=${encodeURIComponent(redirectUri)}&scope=repo`;
+  window.location.href = url;
+}
+
+async function handleOAuthCallback() {
+  const params = new URLSearchParams(window.location.search);
+  const code = params.get('code');
+  if (!code) return;
+  window.history.replaceState({}, '', window.location.pathname);
+  try {
+    const resp = await fetch(CONFIG.OAUTH_WORKER_URL + '/token', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ code })
+    });
+    const { access_token } = await resp.json();
+    if (!access_token) throw new Error('No token');
+    const userResp = await fetch('https://api.github.com/user', {
+      headers: { Authorization: 'Bearer ' + access_token }
+    });
+    const user = await userResp.json();
+    if (user.login.toLowerCase() !== CONFIG.ALLOWED_ADMIN.toLowerCase()) {
+      showToast('Kein Admin-Zugriff f\u00FCr ' + user.login, 'error');
+      return;
+    }
+    adminUser = { ...user, token: access_token };
+    sessionStorage.setItem('gh_token', access_token);
+    sessionStorage.setItem('gh_user', JSON.stringify({ login: user.login, avatar_url: user.avatar_url, name: user.name }));
+    activateAdmin();
+  } catch (e) {
+    showToast('Login fehlgeschlagen', 'error');
+    console.error(e);
+  }
+}
+
+function restoreSession() {
+  const token = sessionStorage.getItem('gh_token');
+  const user = sessionStorage.getItem('gh_user');
+  if (token && user) {
+    adminUser = { ...JSON.parse(user), token };
+    activateAdmin();
+  }
+}
+
+function activateAdmin() {
+  document.getElementById('admin-tab-btn').style.display = '';
+  document.getElementById('admin-avatar').src = adminUser.avatar_url;
+  document.getElementById('admin-name').textContent = adminUser.name || adminUser.login;
+  const btn = document.getElementById('login-btn');
+  btn.innerHTML = `<img class="avatar" src="${adminUser.avatar_url}" alt=""> ${adminUser.login}`;
+  btn.classList.add('logged-in');
+  btn.onclick = null;
+  fetchDataSHA();
+  renderAdminTable();
+  loadAnalytics();
+}
+
+function handleLogout() {
+  adminUser = null; dataSHA = null;
+  sessionStorage.removeItem('gh_token');
+  sessionStorage.removeItem('gh_user');
+  document.getElementById('admin-tab-btn').style.display = 'none';
+  document.getElementById('admin-section').style.display = 'none';
+  const btn = document.getElementById('login-btn');
+  btn.innerHTML = '\uD83D\uDD11 Admin Login';
+  btn.classList.remove('logged-in');
+  btn.onclick = handleLogin;
+  document.querySelector('.page-tab[data-page="skills"]').click();
+}
+
+// ═══════════════════════════════════════════
+// GITHUB API — Read/Write data.json
+// ═══════════════════════════════════════════
+async function fetchDataSHA() {
+  try {
+    const resp = await fetch(`https://api.github.com/repos/${CONFIG.REPO_OWNER}/${CONFIG.REPO_NAME}/contents/${CONFIG.DATA_PATH}`, {
+      headers: { Authorization: 'Bearer ' + adminUser.token }
+    });
+    const file = await resp.json();
+    dataSHA = file.sha;
+  } catch (e) { console.error('Failed to fetch SHA', e); }
+}
+
+async function saveDataToGitHub() {
+  if (!adminUser || !dataSHA) { showToast('Nicht eingeloggt oder SHA fehlt', 'error'); return false; }
+  const content = btoa(unescape(encodeURIComponent(JSON.stringify(DATA, null, 2))));
+  try {
+    const resp = await fetch(`https://api.github.com/repos/${CONFIG.REPO_OWNER}/${CONFIG.REPO_NAME}/contents/${CONFIG.DATA_PATH}`, {
+      method: 'PUT',
+      headers: { Authorization: 'Bearer ' + adminUser.token, 'Content-Type': 'application/json' },
+      body: JSON.stringify({ message: 'Update data.json via Admin Panel', content, sha: dataSHA })
+    });
+    const result = await resp.json();
+    if (result.content) { dataSHA = result.content.sha; return true; }
+    throw new Error(result.message || 'Save failed');
+  } catch (e) { showToast('Speichern fehlgeschlagen: ' + e.message, 'error'); console.error(e); return false; }
+}
+
+// ═══════════════════════════════════════════
+// ANALYTICS
+// ═══════════════════════════════════════════
+async function loadAnalytics() {
+  const cards = document.getElementById('analytics-cards');
+  const chartEl = document.getElementById('analytics-chart-bars');
+  try {
+    const resp = await fetch(CONFIG.OAUTH_WORKER_URL + '/analytics', {
+      headers: { Authorization: 'Bearer ' + adminUser.token }
+    });
+    const data = await resp.json();
+    if (data && data.total) {
+      renderAnalytics(data);
+      return;
+    }
+  } catch (e) { console.warn('Analytics API not available, showing demo data'); }
+  renderAnalytics({
+    thisWeek: 342, lastWeek: 287, total: 2841, topReferrer: 'github.com',
+    weeks: [
+      { label: 'KW17', value: 198 }, { label: 'KW18', value: 245 },
+      { label: 'KW19', value: 312 }, { label: 'KW20', value: 287 },
+      { label: 'KW21', value: 265 }, { label: 'KW22', value: 342 }
+    ],
+    topPages: ['/skills', '/install', '/commands'],
+    browsers: { Chrome: 62, Firefox: 18, Safari: 14, Other: 6 }
+  });
+}
+
+function renderAnalytics(data) {
+  const pctChange = data.lastWeek ? Math.round(((data.thisWeek - data.lastWeek) / data.lastWeek) * 100) : 0;
+  const arrow = pctChange >= 0 ? '\u2191' : '\u2193';
+  const color = pctChange >= 0 ? 'var(--green)' : 'var(--red)';
+  document.getElementById('analytics-cards').innerHTML = `
+    <div class="analytics-card"><div class="analytics-card-label">Diese Woche</div><div class="analytics-card-value">${data.thisWeek.toLocaleString()}</div><div class="analytics-card-sub" style="color:${color}">${arrow} ${Math.abs(pctChange)}% vs. letzte Woche</div></div>
+    <div class="analytics-card"><div class="analytics-card-label">Letzte Woche</div><div class="analytics-card-value">${data.lastWeek.toLocaleString()}</div></div>
+    <div class="analytics-card"><div class="analytics-card-label">Gesamt</div><div class="analytics-card-value">${data.total.toLocaleString()}</div></div>
+    <div class="analytics-card"><div class="analytics-card-label">Top Referrer</div><div class="analytics-card-value" style="font-size:16px">${data.topReferrer}</div></div>`;
+  const maxVal = Math.max(...data.weeks.map(w => w.value));
+  document.getElementById('analytics-chart-bars').innerHTML = data.weeks.map(w => {
+    const h = Math.round((w.value / maxVal) * 110);
+    return `<div class="chart-bar-wrap"><div class="chart-bar" style="height:${h}px"><span class="chart-bar-val">${w.value}</span></div><span class="chart-label">${w.label}</span></div>`;
+  }).join('');
+}
+
+// ═══════════════════════════════════════════
+// ADMIN TABLE
+// ═══════════════════════════════════════════
+function getAdminRows() {
+  const q = (document.getElementById('admin-search')?.value || '').toLowerCase();
+  const f = document.getElementById('admin-filter')?.value || 'all';
+  let rows = [];
+  if (f === 'all' || !f.startsWith('install')) {
+    rows = rows.concat(DATA.items.filter(i => {
+      const catMatch = f === 'all' || i.cat === f;
+      const qMatch = !q || i.name.toLowerCase().includes(q) || i.sub.toLowerCase().includes(q);
+      return catMatch && qMatch;
+    }).map(i => ({ type: 'item', data: i })));
+  }
+  if (f === 'all' || f === 'install-auto') {
+    rows = rows.concat((DATA.installSteps.auto || []).filter(s => !q || s.title.toLowerCase().includes(q))
+      .map(s => ({ type: 'install', installType: 'auto', data: s })));
+  }
+  if (f === 'all' || f === 'install-zip') {
+    rows = rows.concat((DATA.installSteps.zip || []).filter(s => !q || s.title.toLowerCase().includes(q))
+      .map(s => ({ type: 'install', installType: 'zip', data: s })));
+  }
+  return rows;
+}
+
+function renderAdminTable() {
+  const rows = getAdminRows();
+  const tbody = document.getElementById('admin-table-body');
+  tbody.innerHTML = rows.map(r => {
+    if (r.type === 'item') {
+      const i = r.data;
+      return `<tr>
+        <td>${i.icon} ${i.name}</td>
+        <td><span class="cat-badge ${i.cat}">${LABELS[i.cat]}</span></td>
+        <td style="color:var(--text-muted)">${i.sub}</td>
+        <td style="text-align:right">
+          <button class="admin-action edit" onclick="openEditModal({type:'item',id:${i.id}})">Edit</button>
+          <button class="admin-action delete" onclick="confirmDelete('item',${i.id},'${i.name.replace(/'/g,"\\'")}')">Delete</button>
+        </td></tr>`;
+    } else {
+      const s = r.data;
+      const label = r.installType === 'auto' ? 'Auto' : 'ZIP';
+      return `<tr>
+        <td>Step ${s.step}: ${s.title}</td>
+        <td><span class="cat-badge install">Install ${label}</span></td>
+        <td style="color:var(--text-muted)">${r.installType}</td>
+        <td style="text-align:right">
+          <button class="admin-action edit" onclick="openEditModal({type:'install',installType:'${r.installType}',id:'${s.id}'})">Edit</button>
+          <button class="admin-action delete" onclick="confirmDelete('install-${r.installType}','${s.id}','Step ${s.step}: ${s.title.replace(/'/g,"\\'")}')">Delete</button>
+        </td></tr>`;
+    }
+  }).join('');
+  if (!rows.length) {
+    tbody.innerHTML = '<tr><td colspan="4" style="text-align:center;color:var(--text-dim);padding:32px">Keine Eintr\u00E4ge</td></tr>';
+  }
+}
+
+// ═══════════════════════════════════════════
+// EDIT MODAL
+// ═══════════════════════════════════════════
+function toggleEditFields() {
+  const isInstall = document.getElementById('edit-type').value === 'install';
+  document.getElementById('edit-item-fields').style.display = isInstall ? 'none' : '';
+  document.getElementById('edit-install-fields').style.display = isInstall ? '' : 'none';
+}
+
+function openEditModal(ref) {
+  editingItem = null; editingType = null;
+  document.getElementById('edit-type').value = 'item';
+  toggleEditFields();
+
+  if (!ref) {
+    document.getElementById('edit-modal-title').textContent = 'Neuer Eintrag';
+    ['edit-name','edit-sub','edit-icon','edit-tags','edit-url','edit-summary','edit-details','edit-platforms',
+     'edit-step-title','edit-step-desc','edit-step-code','edit-step-note'].forEach(id => { document.getElementById(id).value = ''; });
+    document.getElementById('edit-native').checked = false;
+    document.getElementById('edit-cat').value = 'skills';
+    document.getElementById('edit-install-type').value = 'auto';
+    document.getElementById('edit-step-num').value = '';
+  } else if (ref.type === 'item') {
+    const item = DATA.items.find(i => i.id === ref.id);
+    if (!item) return;
+    editingItem = item; editingType = 'item';
+    document.getElementById('edit-modal-title').textContent = item.name + ' bearbeiten';
+    document.getElementById('edit-type').value = 'item'; toggleEditFields();
+    document.getElementById('edit-name').value = item.name;
+    document.getElementById('edit-cat').value = item.cat;
+    document.getElementById('edit-sub').value = item.sub;
+    document.getElementById('edit-icon').value = item.icon;
+    document.getElementById('edit-tags').value = item.tags.join(', ');
+    document.getElementById('edit-url').value = item.url || '';
+    document.getElementById('edit-summary').value = item.summary;
+    document.getElementById('edit-details').value = item.details;
+    document.getElementById('edit-native').checked = !!item.native;
+    document.getElementById('edit-platforms').value = (item.platforms || []).join(', ');
+  } else if (ref.type === 'install') {
+    const steps = DATA.installSteps[ref.installType] || [];
+    const step = steps.find(s => s.id === ref.id);
+    if (!step) return;
+    editingItem = step; editingType = 'install-' + ref.installType;
+    document.getElementById('edit-modal-title').textContent = step.title + ' bearbeiten';
+    document.getElementById('edit-type').value = 'install'; toggleEditFields();
+    document.getElementById('edit-install-type').value = ref.installType;
+    document.getElementById('edit-step-num').value = step.step;
+    document.getElementById('edit-step-title').value = step.title;
+    document.getElementById('edit-step-desc').value = step.desc;
+    document.getElementById('edit-step-code').value = step.code || '';
+    document.getElementById('edit-step-note').value = step.note || '';
+  }
+  document.getElementById('edit-overlay').classList.add('active');
+  document.body.style.overflow = 'hidden';
+}
+
+function closeEditModal() {
+  document.getElementById('edit-overlay').classList.remove('active');
+  document.body.style.overflow = '';
+  editingItem = null; editingType = null;
+}
+
+async function saveEdit() {
+  const btn = document.getElementById('edit-save-btn');
+  btn.disabled = true; btn.innerHTML = '<span class="spinner"></span>';
+  const isInstall = document.getElementById('edit-type').value === 'install';
+
+  if (isInstall) {
+    const installType = document.getElementById('edit-install-type').value;
+    const stepData = {
+      id: editingItem ? editingItem.id : installType + '-' + Date.now(),
+      step: parseInt(document.getElementById('edit-step-num').value) || 1,
+      title: document.getElementById('edit-step-title').value,
+      desc: document.getElementById('edit-step-desc').value,
+      code: document.getElementById('edit-step-code').value || null,
+      note: document.getElementById('edit-step-note').value || null
+    };
+    if (editingItem && editingType && editingType.startsWith('install')) {
+      const oldType = editingType.replace('install-', '');
+      DATA.installSteps[oldType] = DATA.installSteps[oldType].filter(s => s.id !== editingItem.id);
+    }
+    if (!DATA.installSteps[installType]) DATA.installSteps[installType] = [];
+    const existIdx = DATA.installSteps[installType].findIndex(s => s.id === stepData.id);
+    if (existIdx >= 0) DATA.installSteps[installType][existIdx] = stepData;
+    else DATA.installSteps[installType].push(stepData);
+  } else {
+    const itemData = {
+      id: editingItem ? editingItem.id : (DATA.meta.nextId || DATA.items.length + 1),
+      name: document.getElementById('edit-name').value,
+      cat: document.getElementById('edit-cat').value,
+      sub: document.getElementById('edit-sub').value,
+      icon: document.getElementById('edit-icon').value || '\u2B21',
+      tags: document.getElementById('edit-tags').value.split(',').map(t => t.trim()).filter(Boolean),
+      url: document.getElementById('edit-url').value || null,
+      summary: document.getElementById('edit-summary').value,
+      details: document.getElementById('edit-details').value,
+      native: document.getElementById('edit-native').checked,
+      platforms: document.getElementById('edit-platforms').value.split(',').map(p => p.trim()).filter(Boolean)
+    };
+    if (editingItem && editingType === 'item') {
+      const idx = DATA.items.findIndex(i => i.id === editingItem.id);
+      if (idx >= 0) DATA.items[idx] = itemData;
+    } else {
+      if (!editingItem) DATA.meta.nextId = (DATA.meta.nextId || DATA.items.length + 1) + 1;
+      DATA.items.push(itemData);
+    }
+  }
+
+  DATA.meta.lastUpdated = new Date().toISOString();
+  const saved = await saveDataToGitHub();
+  btn.disabled = false; btn.textContent = 'Speichern';
+  if (saved) {
+    showToast('Gespeichert!', 'success');
+    closeEditModal();
+    updateStats(); render(); renderInstallSteps(); renderAdminTable();
+  }
+}
+
+// ═══════════════════════════════════════════
+// DELETE
+// ═══════════════════════════════════════════
+let deleteTarget = null;
+
+function confirmDelete(type, id, name) {
+  deleteTarget = { type, id };
+  document.getElementById('confirm-name').textContent = name;
+  document.getElementById('confirm-overlay').classList.add('active');
+  document.getElementById('confirm-yes-btn').onclick = executeDelete;
+}
+
+function closeConfirm() {
+  document.getElementById('confirm-overlay').classList.remove('active');
+  deleteTarget = null;
+}
+
+async function executeDelete() {
+  if (!deleteTarget) return;
+  const btn = document.getElementById('confirm-yes-btn');
+  btn.innerHTML = '<span class="spinner"></span>'; btn.disabled = true;
+  const { type, id } = deleteTarget;
+  if (type === 'item') {
+    DATA.items = DATA.items.filter(i => i.id !== id);
+  } else if (type.startsWith('install-')) {
+    const installType = type.replace('install-', '');
+    DATA.installSteps[installType] = (DATA.installSteps[installType] || []).filter(s => s.id !== id);
+  }
+  DATA.meta.lastUpdated = new Date().toISOString();
+  const saved = await saveDataToGitHub();
+  btn.textContent = 'L\u00F6schen'; btn.disabled = false;
+  closeConfirm();
+  if (saved) {
+    showToast('Gel\u00F6scht!', 'success');
+    updateStats(); render(); renderInstallSteps(); renderAdminTable();
+  }
+}
+
+// ═══════════════════════════════════════════
+// TOAST
+// ═══════════════════════════════════════════
+function showToast(msg, type) {
+  const t = document.getElementById('toast');
+  t.textContent = msg;
+  t.className = 'toast ' + type + ' show';
+  setTimeout(() => t.classList.remove('show'), 2500);
+}
+
+// ═══════════════════════════════════════════
+// EVENTS
+// ═══════════════════════════════════════════
+document.getElementById('modal-close').addEventListener('click', closeModal);
+document.getElementById('modal-overlay').addEventListener('click', e => { if (e.target === e.currentTarget) closeModal(); });
+document.getElementById('edit-overlay').addEventListener('click', e => { if (e.target === e.currentTarget) closeEditModal(); });
+document.getElementById('confirm-overlay').addEventListener('click', e => { if (e.target === e.currentTarget) closeConfirm(); });
+document.addEventListener('keydown', e => {
+  if (e.key === 'Escape') { closeModal(); closeEditModal(); closeConfirm(); }
+});
+
+document.querySelectorAll('.filter-btn').forEach(btn => {
+  btn.addEventListener('click', () => {
+    document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active'); activeFilter = btn.dataset.cat; render();
+  });
+});
+
+document.getElementById('search').addEventListener('input', e => { searchQuery = e.target.value; render(); });
+document.getElementById('admin-search')?.addEventListener('input', () => renderAdminTable());
+document.getElementById('admin-filter')?.addEventListener('change', () => renderAdminTable());
+
+// Page Tabs
+document.querySelectorAll('.page-tab').forEach(tab => {
+  tab.addEventListener('click', () => {
+    document.querySelectorAll('.page-tab').forEach(t => t.classList.remove('active'));
+    tab.classList.add('active');
+    const page = tab.dataset.page;
+    document.getElementById('skills-header').style.display = page === 'skills' ? '' : 'none';
+    document.getElementById('main-controls').style.display = page === 'skills' ? '' : 'none';
+    document.getElementById('skills-grid-wrapper').style.display = page === 'skills' ? '' : 'none';
+    document.getElementById('install-section').style.display = page === 'install' ? '' : 'none';
+    document.getElementById('admin-section').style.display = page === 'admin' ? '' : 'none';
+  });
+});
+
+// Install Sub-Tabs
+document.querySelectorAll('.install-subtab').forEach(tab => {
+  tab.addEventListener('click', () => {
+    document.querySelectorAll('.install-subtab').forEach(t => t.classList.remove('active'));
+    tab.classList.add('active');
+    document.querySelectorAll('.install-content').forEach(c => c.classList.remove('active'));
+    document.getElementById('install-' + tab.dataset.install).classList.add('active');
+  });
+});
+
+function copyCode(btn) {
+  const pre = btn.nextElementSibling;
+  navigator.clipboard.writeText(pre.innerText).then(() => {
+    btn.textContent = 'COPIED';
+    setTimeout(() => btn.textContent = 'COPY', 1500);
+  });
+}
+
+// ═══════════════════════════════════════════
+// INIT
+// ═══════════════════════════════════════════
+loadData();
+handleOAuthCallback();
+restoreSession();
+</script>
+</body>
+</html>
