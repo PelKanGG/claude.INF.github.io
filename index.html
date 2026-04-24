@@ -181,6 +181,15 @@
     letter-spacing: -0.01em; margin-bottom: 8px; line-height: 1.2;
   }
   .card-name.is-native { font-family: 'JetBrains Mono', monospace; font-size: 15px; }
+  .card.is-native { border-color: rgba(52,211,153,0.2); }
+  .card.is-native:hover { border-color: rgba(52,211,153,0.4); box-shadow: 0 8px 32px var(--green-glow); }
+  .card.is-native::after { background: linear-gradient(90deg, var(--green), transparent) !important; }
+  .native-badge {
+    font-family: 'JetBrains Mono', monospace; font-size: 8px; letter-spacing: 0.1em;
+    text-transform: uppercase; padding: 2px 6px; border-radius: 4px;
+    background: rgba(52,211,153,0.12); color: var(--green); border: 1px solid rgba(52,211,153,0.2);
+    margin-left: 6px;
+  }
   .card-summary { font-size: 13px; color: var(--text-muted); line-height: 1.65; margin-bottom: 14px; }
   .card-tags { display: flex; flex-wrap: wrap; gap: 4px; }
   .tag {
@@ -816,21 +825,17 @@
 <!-- Toast -->
 <div class="toast" id="toast"></div>
 
-<!-- GoatCounter (replace YOUR_SITE with actual GoatCounter site code) -->
-<script data-goatcounter="https://YOUR_SITE.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
+<!-- GoatCounter — füge hier dein Script ein wenn eingerichtet -->
 
 <script>
 // ═══════════════════════════════════════════
 // CONFIG — change these for your deployment
 // ═══════════════════════════════════════════
 const CONFIG = {
-  GITHUB_CLIENT_ID: 'YOUR_GITHUB_CLIENT_ID',
-  OAUTH_WORKER_URL: 'https://your-worker.workers.dev',
   ALLOWED_ADMIN: 'PelKanGG',
   REPO_OWNER: 'PelKanGG',
   REPO_NAME: 'claude.INF.github.io',
-  DATA_PATH: 'data.json',
-  GOATCOUNTER_SITE: 'https://pelkangg.github.io/claude.INF.github.io/'
+  DATA_PATH: 'data.json'
 };
 
 // ═══════════════════════════════════════════
@@ -894,13 +899,14 @@ function updateStats() {
 // ═══════════════════════════════════════════
 function buildCard(item, i) {
   const card = document.createElement('div');
-  card.className = 'card';
+  card.className = 'card' + (item.native ? ' is-native' : '');
   card.dataset.cat = item.cat;
   card.style.animationDelay = `${i * 0.03}s`;
   const platformsHTML = item.platforms && item.platforms.length
     ? `<div class="platform-chips">${item.platforms.map(p => PLATFORM_LABELS[p] ? `<span class="platform-chip ${PLATFORM_LABELS[p].cls}">${PLATFORM_LABELS[p].label}</span>` : '').join('')}</div>` : '';
+  const nativeBadge = item.native ? '<span class="native-badge">Native</span>' : '';
   card.innerHTML = `
-    <div class="card-header"><div class="card-icon">${item.icon}</div><span class="badge">${LABELS[item.cat]}</span></div>
+    <div class="card-header"><div class="card-icon">${item.icon}</div><span class="badge">${LABELS[item.cat]}${nativeBadge}</span></div>
     <div class="card-name${item.native ? ' is-native' : ''}">${item.name}</div>
     <div class="card-summary">${item.summary}</div>
     <div class="card-tags">${item.tags.map(t => `<span class="tag">${t}</span>`).join('')}</div>
@@ -1008,43 +1014,33 @@ function closeModal() {
 }
 
 // ═══════════════════════════════════════════
-// AUTH — GitHub OAuth
+// AUTH — Personal Access Token (PAT)
 // ═══════════════════════════════════════════
 function handleLogin() {
   if (adminUser) return;
-  const redirectUri = window.location.origin + window.location.pathname;
-  const url = `https://github.com/login/oauth/authorize?client_id=${CONFIG.GITHUB_CLIENT_ID}&redirect_uri=${encodeURIComponent(redirectUri)}&scope=repo`;
-  window.location.href = url;
+  const token = prompt('GitHub Personal Access Token eingeben:');
+  if (!token || !token.trim()) return;
+  verifyToken(token.trim());
 }
 
-async function handleOAuthCallback() {
-  const params = new URLSearchParams(window.location.search);
-  const code = params.get('code');
-  if (!code) return;
-  window.history.replaceState({}, '', window.location.pathname);
+async function verifyToken(token) {
   try {
-    const resp = await fetch(CONFIG.OAUTH_WORKER_URL + '/token', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ code })
+    const resp = await fetch('https://api.github.com/user', {
+      headers: { Authorization: 'Bearer ' + token, 'User-Agent': 'claude-dir' }
     });
-    const { access_token } = await resp.json();
-    if (!access_token) throw new Error('No token');
-    const userResp = await fetch('https://api.github.com/user', {
-      headers: { Authorization: 'Bearer ' + access_token }
-    });
-    const user = await userResp.json();
+    if (!resp.ok) throw new Error('Token ung\u00FCltig');
+    const user = await resp.json();
     if (user.login.toLowerCase() !== CONFIG.ALLOWED_ADMIN.toLowerCase()) {
       showToast('Kein Admin-Zugriff f\u00FCr ' + user.login, 'error');
       return;
     }
-    adminUser = { ...user, token: access_token };
-    sessionStorage.setItem('gh_token', access_token);
+    adminUser = { login: user.login, avatar_url: user.avatar_url, name: user.name, token };
+    sessionStorage.setItem('gh_token', token);
     sessionStorage.setItem('gh_user', JSON.stringify({ login: user.login, avatar_url: user.avatar_url, name: user.name }));
+    showToast('Willkommen, ' + (user.name || user.login) + '!', 'success');
     activateAdmin();
   } catch (e) {
-    showToast('Login fehlgeschlagen', 'error');
-    console.error(e);
+    showToast('Login fehlgeschlagen: ' + e.message, 'error');
   }
 }
 
@@ -1115,18 +1111,7 @@ async function saveDataToGitHub() {
 // ANALYTICS
 // ═══════════════════════════════════════════
 async function loadAnalytics() {
-  const cards = document.getElementById('analytics-cards');
-  const chartEl = document.getElementById('analytics-chart-bars');
-  try {
-    const resp = await fetch(CONFIG.OAUTH_WORKER_URL + '/analytics', {
-      headers: { Authorization: 'Bearer ' + adminUser.token }
-    });
-    const data = await resp.json();
-    if (data && data.total) {
-      renderAnalytics(data);
-      return;
-    }
-  } catch (e) { console.warn('Analytics API not available, showing demo data'); }
+  // Demo-Daten — ersetze mit GoatCounter API wenn eingerichtet
   renderAnalytics({
     thisWeek: 342, lastWeek: 287, total: 2841, topReferrer: 'github.com',
     weeks: [
@@ -1436,7 +1421,6 @@ function copyCode(btn) {
 // INIT
 // ═══════════════════════════════════════════
 loadData();
-handleOAuthCallback();
 restoreSession();
 </script>
 </body>
