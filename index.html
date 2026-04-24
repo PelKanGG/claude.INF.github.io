@@ -883,6 +883,7 @@ async function loadData() {
   updateStats();
   render();
   renderInstallSteps();
+  if (adminUser) { renderAdminTable(); loadAnalytics(); }
 }
 
 function updateStats() {
@@ -1420,8 +1421,11 @@ function copyCode(btn) {
 // ═══════════════════════════════════════════
 // INIT
 // ═══════════════════════════════════════════
-loadData();
-restoreSession();
+async function init() {
+  restoreSession();
+  await loadData();
+}
+init();
 </script>
 </body>
 </html>
