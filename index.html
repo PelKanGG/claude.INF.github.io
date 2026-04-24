@@ -382,7 +382,8 @@
   .path-chip .os { color: var(--text-dim); font-size: 9px; letter-spacing: 0.1em; text-transform: uppercase; display: block; margin-bottom: 2px; }
 
   /* ── Admin Section ── */
-  #admin-section { padding-bottom: 80px; display: none; }
+  #admin-section { padding-bottom: 80px; }
+  .page-hidden { display: none !important; }
   .admin-header-bar {
     display: flex; align-items: center; gap: 12px; padding: 24px 0 32px;
     border-bottom: 1px solid var(--border); margin-bottom: 32px;
@@ -621,7 +622,7 @@
   <div class="page-tabs">
     <button class="page-tab active" data-page="skills">&#x2B21; Skills &amp; Plugins</button>
     <button class="page-tab" data-page="install">&#x1F4E6; Installations Anleitung</button>
-    <button class="page-tab" data-page="admin" id="admin-tab-btn" style="display:none">&#x1F6E1; Admin</button>
+    <button class="page-tab page-hidden" data-page="admin" id="admin-tab-btn">&#x1F6E1; Admin</button>
   </div>
   <div class="page-tab-divider"></div>
 
@@ -663,7 +664,7 @@
   <div class="grid" id="grid"></div>
 </div>
 
-<div class="wrapper" id="install-section" style="display:none">
+<div class="wrapper page-hidden" id="install-section">
   <div class="install-header">
     <div class="header-eyebrow">Einrichtung</div>
     <h2>Skills &amp; Plugins<br><span style="background:linear-gradient(135deg,var(--green),var(--cyan));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text">Installieren</span></h2>
@@ -677,7 +678,7 @@
   <div class="install-content" id="install-zip"></div>
 </div>
 
-<div class="wrapper" id="admin-section" style="display:none">
+<div class="wrapper page-hidden" id="admin-section">
   <div class="admin-header-bar">
     <img class="admin-avatar" id="admin-avatar" src="" alt="">
     <span class="admin-name" id="admin-name"></span>
@@ -1055,7 +1056,7 @@ function restoreSession() {
 }
 
 function activateAdmin() {
-  document.getElementById('admin-tab-btn').style.display = '';
+  document.getElementById('admin-tab-btn').classList.remove('page-hidden');
   document.getElementById('admin-avatar').src = adminUser.avatar_url;
   document.getElementById('admin-name').textContent = adminUser.name || adminUser.login;
   const btn = document.getElementById('login-btn');
@@ -1071,8 +1072,8 @@ function handleLogout() {
   adminUser = null; dataSHA = null;
   sessionStorage.removeItem('gh_token');
   sessionStorage.removeItem('gh_user');
-  document.getElementById('admin-tab-btn').style.display = 'none';
-  document.getElementById('admin-section').style.display = 'none';
+  document.getElementById('admin-tab-btn').classList.add('page-hidden');
+  document.getElementById('admin-section').classList.add('page-hidden');
   const btn = document.getElementById('login-btn');
   btn.innerHTML = '\uD83D\uDD11 Admin Login';
   btn.classList.remove('logged-in');
@@ -1387,16 +1388,30 @@ document.getElementById('admin-search')?.addEventListener('input', () => renderA
 document.getElementById('admin-filter')?.addEventListener('change', () => renderAdminTable());
 
 // Page Tabs
+const PAGE_SECTIONS = {
+  skills: ['skills-header', 'main-controls', 'skills-grid-wrapper'],
+  install: ['install-section'],
+  admin: ['admin-section']
+};
+
 document.querySelectorAll('.page-tab').forEach(tab => {
   tab.addEventListener('click', () => {
     document.querySelectorAll('.page-tab').forEach(t => t.classList.remove('active'));
     tab.classList.add('active');
     const page = tab.dataset.page;
-    document.getElementById('skills-header').style.display = page === 'skills' ? 'block' : 'none';
-    document.getElementById('main-controls').style.display = page === 'skills' ? 'block' : 'none';
-    document.getElementById('skills-grid-wrapper').style.display = page === 'skills' ? 'block' : 'none';
-    document.getElementById('install-section').style.display = page === 'install' ? 'block' : 'none';
-    document.getElementById('admin-section').style.display = page === 'admin' ? 'block' : 'none';
+    Object.entries(PAGE_SECTIONS).forEach(([key, ids]) => {
+      ids.forEach(id => {
+        const el = document.getElementById(id);
+        if (el) {
+          if (key === page) { el.classList.remove('page-hidden'); }
+          else { el.classList.add('page-hidden'); }
+        }
+      });
+    });
+    if (page === 'admin' && adminUser) {
+      renderAdminTable();
+      loadAnalytics();
+    }
   });
 });
 
