@@ -1392,11 +1392,11 @@ document.querySelectorAll('.page-tab').forEach(tab => {
     document.querySelectorAll('.page-tab').forEach(t => t.classList.remove('active'));
     tab.classList.add('active');
     const page = tab.dataset.page;
-    document.getElementById('skills-header').style.display = page === 'skills' ? '' : 'none';
-    document.getElementById('main-controls').style.display = page === 'skills' ? '' : 'none';
-    document.getElementById('skills-grid-wrapper').style.display = page === 'skills' ? '' : 'none';
-    document.getElementById('install-section').style.display = page === 'install' ? '' : 'none';
-    document.getElementById('admin-section').style.display = page === 'admin' ? '' : 'none';
+    document.getElementById('skills-header').style.display = page === 'skills' ? 'block' : 'none';
+    document.getElementById('main-controls').style.display = page === 'skills' ? 'block' : 'none';
+    document.getElementById('skills-grid-wrapper').style.display = page === 'skills' ? 'block' : 'none';
+    document.getElementById('install-section').style.display = page === 'install' ? 'block' : 'none';
+    document.getElementById('admin-section').style.display = page === 'admin' ? 'block' : 'none';
   });
 });
 
