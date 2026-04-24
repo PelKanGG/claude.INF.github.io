@@ -539,6 +539,20 @@
   .edit-checkbox-row { display: flex; align-items: center; gap: 10px; margin-bottom: 16px; }
   .edit-checkbox-row input[type="checkbox"] { accent-color: var(--purple); width: 16px; height: 16px; }
   .edit-checkbox-row label { font-size: 13px; color: var(--text-muted); }
+  .color-picker { display: flex; gap: 8px; margin-top: 4px; }
+  .color-dot {
+    width: 28px; height: 28px; border-radius: 50%; border: 2px solid transparent;
+    cursor: pointer; transition: all 0.15s; padding: 0;
+  }
+  .color-dot:hover { transform: scale(1.15); }
+  .color-dot.active { border-color: var(--text); box-shadow: 0 0 0 2px var(--bg), 0 0 0 4px var(--text-muted); }
+
+  .card-name.color-red { color: var(--red); }
+  .card-name.color-green { color: var(--green); }
+  .card-name.color-yellow { color: var(--orange); }
+  .card-name.color-blue { color: var(--blue); }
+  .card-name.color-white { color: #ffffff; }
+
   .edit-actions { display: flex; gap: 10px; justify-content: flex-end; padding-top: 8px; }
   .edit-btn {
     font-family: 'JetBrains Mono', monospace; font-size: 12px; padding: 10px 24px;
@@ -780,8 +794,24 @@
         <div class="edit-field"><label class="edit-label">URL (optional)</label><input class="edit-input" id="edit-url" placeholder="https://..."></div>
         <div class="edit-field"><label class="edit-label">Summary</label><textarea class="edit-textarea" id="edit-summary" rows="2"></textarea></div>
         <div class="edit-field"><label class="edit-label">Details</label><textarea class="edit-textarea" id="edit-details" rows="4"></textarea></div>
-        <div class="edit-checkbox-row">
-          <input type="checkbox" id="edit-native"><label for="edit-native">Native Command (Monospace-Name)</label>
+        <div class="edit-row">
+          <div class="edit-field">
+            <label class="edit-label">Titel-Farbe</label>
+            <div class="color-picker" id="edit-color-picker">
+              <button type="button" class="color-dot" data-color="" title="Standard" style="background:var(--text);"></button>
+              <button type="button" class="color-dot" data-color="red" title="Rot" style="background:var(--red);"></button>
+              <button type="button" class="color-dot" data-color="green" title="Gr&uuml;n" style="background:var(--green);"></button>
+              <button type="button" class="color-dot" data-color="yellow" title="Gelb" style="background:var(--orange);"></button>
+              <button type="button" class="color-dot" data-color="blue" title="Blau" style="background:var(--blue);"></button>
+              <button type="button" class="color-dot" data-color="white" title="Weiss" style="background:#ffffff;"></button>
+            </div>
+            <input type="hidden" id="edit-title-color" value="">
+          </div>
+          <div class="edit-field" style="display:flex;align-items:flex-end;">
+            <div class="edit-checkbox-row" style="margin-bottom:0">
+              <input type="checkbox" id="edit-native"><label for="edit-native">Native Command</label>
+            </div>
+          </div>
         </div>
         <div class="edit-field">
           <label class="edit-label">Plattformen (kommasepariert: chat, claudecode, cowork)</label>
@@ -909,7 +939,7 @@ function buildCard(item, i) {
   const nativeBadge = item.native ? '<span class="native-badge">Native</span>' : '';
   card.innerHTML = `
     <div class="card-header"><div class="card-icon">${item.icon}</div><span class="badge">${LABELS[item.cat]}${nativeBadge}</span></div>
-    <div class="card-name${item.native ? ' is-native' : ''}">${item.name}</div>
+    <div class="card-name${item.native ? ' is-native' : ''}${item.titleColor ? ' color-' + item.titleColor : ''}">${item.name}</div>
     <div class="card-summary">${item.summary}</div>
     <div class="card-tags">${item.tags.map(t => `<span class="tag">${t}</span>`).join('')}</div>
     ${platformsHTML}
@@ -994,7 +1024,9 @@ function openModal(item) {
   document.getElementById('modal-badge').textContent = LABELS[item.cat];
   document.getElementById('modal-badge').className = 'badge';
   document.getElementById('modal-sub').textContent = item.sub;
-  document.getElementById('modal-title').textContent = item.name;
+  const titleEl = document.getElementById('modal-title');
+  titleEl.textContent = item.name;
+  titleEl.className = 'modal-title' + (item.titleColor ? ' color-' + item.titleColor : '');
   document.getElementById('modal-details').textContent = item.details;
   const linkSec = document.getElementById('modal-link-section');
   const link = document.getElementById('modal-link');
@@ -1202,6 +1234,22 @@ function renderAdminTable() {
 // ═══════════════════════════════════════════
 // EDIT MODAL
 // ═══════════════════════════════════════════
+// Color picker logic
+document.querySelectorAll('.color-dot').forEach(dot => {
+  dot.addEventListener('click', () => {
+    document.querySelectorAll('.color-dot').forEach(d => d.classList.remove('active'));
+    dot.classList.add('active');
+    document.getElementById('edit-title-color').value = dot.dataset.color;
+  });
+});
+
+function setColorPicker(color) {
+  document.querySelectorAll('.color-dot').forEach(d => {
+    d.classList.toggle('active', d.dataset.color === (color || ''));
+  });
+  document.getElementById('edit-title-color').value = color || '';
+}
+
 function toggleEditFields() {
   const isInstall = document.getElementById('edit-type').value === 'install';
   document.getElementById('edit-item-fields').style.display = isInstall ? 'none' : '';
@@ -1218,6 +1266,7 @@ function openEditModal(ref) {
     ['edit-name','edit-sub','edit-icon','edit-tags','edit-url','edit-summary','edit-details','edit-platforms',
      'edit-step-title','edit-step-desc','edit-step-code','edit-step-note'].forEach(id => { document.getElementById(id).value = ''; });
     document.getElementById('edit-native').checked = false;
+    setColorPicker('');
     document.getElementById('edit-cat').value = 'skills';
     document.getElementById('edit-install-type').value = 'auto';
     document.getElementById('edit-step-num').value = '';
@@ -1236,6 +1285,7 @@ function openEditModal(ref) {
     document.getElementById('edit-summary').value = item.summary;
     document.getElementById('edit-details').value = item.details;
     document.getElementById('edit-native').checked = !!item.native;
+    setColorPicker(item.titleColor || '');
     document.getElementById('edit-platforms').value = (item.platforms || []).join(', ');
   } else if (ref.type === 'install') {
     const steps = DATA.installSteps[ref.installType] || [];
@@ -1296,6 +1346,7 @@ async function saveEdit() {
       summary: document.getElementById('edit-summary').value,
       details: document.getElementById('edit-details').value,
       native: document.getElementById('edit-native').checked,
+      titleColor: document.getElementById('edit-title-color').value || null,
       platforms: document.getElementById('edit-platforms').value.split(',').map(p => p.trim()).filter(Boolean)
     };
     if (editingItem && editingType === 'item') {
